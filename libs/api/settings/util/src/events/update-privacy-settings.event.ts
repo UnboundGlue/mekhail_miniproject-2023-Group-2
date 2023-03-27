@@ -1,4 +1,4 @@
 import { ITheme } from '../interfaces';
-export class UpdateThemeSettingsEvent {
+export class UpdatePrivacySettingsEvent {
   constructor(public readonly profile: ITheme) {}
 }
