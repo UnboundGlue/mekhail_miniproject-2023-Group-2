@@ -1,5 +1,7 @@
-import { IUpdateAuthRequest } from '../requests';
+import { Console } from 'console';
+import { IResetAuthRequest } from '../requests';
 
 export class ResetAuthCommand {
-  constructor(public readonly request: IUpdateAuthRequest) {} //create net interface 
+  constructor(/*  public readonly request: IResetAuthRequest */ ) {console.log();
+  } 
 }

@@ -6,10 +6,10 @@ import { Auth } from '../models';
 
 @CommandHandler(ResetAuthCommand)
 export class ResetAuthHandler implements ICommandHandler<ResetAuthCommand> {
-  constructor(private publisher: EventPublisher) {}
+  constructor(/*private publisher: EventPublisher*/) {console.log("a")}
 
   async execute(command: ResetAuthCommand) {
       //Reset the user password when forgot
-      return new NotImplementedException;
+      return NotImplementedException;
     };
 }
