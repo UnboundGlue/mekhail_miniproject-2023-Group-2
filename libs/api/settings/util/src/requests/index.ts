@@ -1,1 +1,1 @@
-export * from './example-example-example.command';
+export * from './update-theme-settings.request';

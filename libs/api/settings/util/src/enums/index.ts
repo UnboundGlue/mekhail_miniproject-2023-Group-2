@@ -1,1 +1,1 @@
-export * from './example.enum';
+export * from './Theme.enums';

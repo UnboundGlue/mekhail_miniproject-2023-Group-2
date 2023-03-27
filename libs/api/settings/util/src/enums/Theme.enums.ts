@@ -1,4 +1,4 @@
-export enum ExampleGroup {
+export enum ThemeGroup {
   example_var = '18-25',
   example_var1 = '26-35',
   example_var2= '36-45',

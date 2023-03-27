@@ -1,1 +1,1 @@
-export * from './example-example.interface';
+export * from './theme-settings.interface';

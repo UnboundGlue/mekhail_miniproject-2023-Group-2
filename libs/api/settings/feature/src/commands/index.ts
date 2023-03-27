@@ -1,1 +1,1 @@
-export * from './example-example-example.handler';
+export * from './update-theme-settings.handler';

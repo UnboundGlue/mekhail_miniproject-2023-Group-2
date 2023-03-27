@@ -1,1 +1,1 @@
-export * from './example-example-example.event';
+export * from './update-theme-settings.event';
