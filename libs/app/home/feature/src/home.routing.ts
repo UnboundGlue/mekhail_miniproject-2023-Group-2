@@ -25,7 +25,7 @@ const routes: Routes = [
       {
         path: 'chat',
         loadChildren: () =>
-          import('@mp/app/settings/feature').then((m) => m.AppSettingsFeatureModule),
+          import('@mp/app/chat/feature').then((m) => m.AppChatFeatureModule),
       },
       {
         path: 'tos',
@@ -35,14 +35,14 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/home',
+        redirectTo: '/home/feed',
       },
     ],
   },
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/home',
+    redirectTo: '/home/feed',
   },
 ];
 
