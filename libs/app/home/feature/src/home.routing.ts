@@ -18,6 +18,16 @@ const routes: Routes = [
           import('@mp/app/profile/feature').then((m) => m.ProfileModule),
       },
       {
+        path: 'settings',
+        loadChildren: () =>
+          import('@mp/app/settings/feature').then((m) => m.AppSettingsFeatureModule),
+      },
+      {
+        path: 'tos',
+        loadChildren: () =>
+          import('@mp/app/tos/feature').then((m) => m.TosModule),
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: '/home/dashboard',
