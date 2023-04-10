@@ -27,12 +27,15 @@ export class AuthApi {
   }
 
   async resetPassword(email: string, password: string, newPassword : string) {
-     await this.login(email,password).then((userCredential) => {
-      return updatePassword(userCredential.user, newPassword);
-    })
-    .catch((error) => { // invalid password
+
+    try {
+      const userCredential =  await  this.login(email,password);
+      return await updatePassword(userCredential.user, newPassword);
+    }
+    catch(error)  { // invalid password
       console.error(error);
-    });
+      console.log("meep")
+    };
   }
 
   async continueWithGoogle() {
