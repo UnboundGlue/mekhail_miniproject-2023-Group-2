@@ -1,6 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Chat</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ng-container>
+  <ion-content>      
+    <ion-segment value="matches">  
+      <ion-segment-button value="matches">  
+        <ion-label>Matches</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="friends">  
+        <ion-label>Friends</ion-label>
+      </ion-segment-button>  
+    </ion-segment>  
 
+    <mp-profile-card-page></mp-profile-card-page>
+    <mp-profile-card-page></mp-profile-card-page>
+    <mp-profile-card-page></mp-profile-card-page>
+  </ion-content>  
+</ng-container>

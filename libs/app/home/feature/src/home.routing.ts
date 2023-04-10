@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home.page';
 
+import {MessagesPageComponent} from '../../../chat/feature/src/lib/messages-page/messages-page.component'
+
 const routes: Routes = [
   {
     path: '',
@@ -44,6 +46,11 @@ const routes: Routes = [
     pathMatch: 'full',
     redirectTo: '/home/feed',
   },
+  {
+    path: 'chat/messages',
+    pathMatch: 'full',
+    component: MessagesPageComponent
+  }
 ];
 
 @NgModule({
