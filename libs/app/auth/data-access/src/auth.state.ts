@@ -7,7 +7,8 @@ import {
     Register,
     SetUser,
     SubscribeToAuthState,
-    ResetPassword
+    ResetPassword,
+    ForgotPassword
 } from '@mp/app/auth/util';
 import { SetError } from '@mp/app/errors/util';
 import { Navigate } from '@ngxs/router-plugin';
@@ -84,6 +85,19 @@ export class AuthState {
   ) {
     try {
       await this.authApi.resetPassword(email, password,newPassword);
+      return ctx.dispatch(new Navigate(['home']));
+    } catch (error) {
+      return ctx.dispatch(new SetError((error as Error).message));
+    }
+  }
+
+  @Action(ForgotPassword)
+  async forgotPassword(
+    ctx: StateContext<AuthStateModel>,
+    { email}: ForgotPassword
+  ) {
+    try {
+      await this.authApi.forgotPassword(email);
       return ctx.dispatch(new Navigate(['home']));
     } catch (error) {
       return ctx.dispatch(new SetError((error as Error).message));

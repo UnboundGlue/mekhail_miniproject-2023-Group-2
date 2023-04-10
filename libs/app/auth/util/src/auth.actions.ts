@@ -34,6 +34,13 @@ export class ResetPassword {
   ) {}
 }
 
+export class ForgotPassword {
+  static readonly type = '[Auth] ForgotPassword';
+  constructor(
+    public readonly email: string,
+  ) {}
+}
+
 export class ContinueWithGoogle {
   static readonly type = '[Auth] ContinueWithGoogle';
 }
