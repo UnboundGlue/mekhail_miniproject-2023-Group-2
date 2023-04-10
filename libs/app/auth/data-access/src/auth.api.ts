@@ -6,6 +6,7 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
+  updatePassword
 } from '@angular/fire/auth';
 import { signOut } from '@firebase/auth';
 
@@ -23,6 +24,15 @@ export class AuthApi {
 
   async register(email: string, password: string) {
     return await createUserWithEmailAndPassword(this.auth, email, password);
+  }
+
+  async resetPassword(email: string, password: string, newPassword : string) {
+     await this.login(email,password).then((userCredential) => {
+      return updatePassword(userCredential.user, newPassword);
+    })
+    .catch((error) => { // invalid password
+      console.error(error);
+    });
   }
 
   async continueWithGoogle() {
