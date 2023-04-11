@@ -34,13 +34,234 @@
     </ion-toolbar>
   </ion-header>
 
-  <ng-container *ngIf="(profile$ | async) as profile; else noProfile">
+  <ng-container>
+    <ion-content>      
+      <ion-segment value="matches">  
+        <ion-segment-button value="matches">  
+          <ion-label>Edit</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="friends">  
+          <ion-label>Preview</ion-label>
+        </ion-segment-button>  
+      </ion-segment>  
+
+      <div class="backdrop"></div>
+
+      <div class="profile-information-header">
+        <h1>Darth Vadar</h1>
+        <div class="progress-loader-wrapper">
+          <div class="progress-loader">
+            <img src="https://picsum.photos/200/400?random=13" alt="img-10">
+          </div>
+          <ion-buttons>  
+            <ion-button class="add-images-btn" id="open-modal" expand="block">
+              <ion-icon name="add-outline" size="large" class="add-img" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+        <ion-badge>78%</ion-badge>
+        <h2>Time Remaining</h2>
+        <h1 class="time-remaining">$1200</h1>
+      </div>
+
+      <div class="profile-content">
+        <div class="profile-content-inner-wrapper">
+
+          <ion-label class="item-label">About Me</ion-label>
+          <ion-input placeholder="About Me" maxlength="10" maxlength="200" [(ngModel)]="aboutMeText" (ionChange)="onInputChange($event)"></ion-input>
+          <p>{{remainingAboutMeChars}}</p>
+
+
+          <ion-label class="item-label">Interests</ion-label>
+
+          <div class="interests-buttons">
+            <ion-chip>
+              <ion-icon name="game-controller-outline" size="large"></ion-icon>
+              <ion-label>Video Games</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="football-outline" size="large"></ion-icon>
+              <ion-label>Football</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="library-outline" size="large"></ion-icon>
+              <ion-label>Reading</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="musical-notes-outline" size="large"></ion-icon>
+              <ion-label>Music</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="pencil-outline" size="large"></ion-icon>
+              <ion-label>Writing</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="basketball-outline" size="large"></ion-icon>
+              <ion-label>Basketball</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="barbell-outline" size="large"></ion-icon>
+              <ion-label>Gym</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="color-palette-outline" size="large"></ion-icon>
+              <ion-label>Art</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="camera-outline" size="large"></ion-icon>
+              <ion-label>Photography</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="basketball-outline" size="large"></ion-icon>
+              <ion-label>Basketball</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="airplane-outline" size="large"></ion-icon>
+              <ion-label>Travel</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="pizza-outline" size="large"></ion-icon>
+              <ion-label>Take-out</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="wine-outline" size="large"></ion-icon>
+              <ion-label>Wine</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="fish-outline" size="large"></ion-icon>
+              <ion-label>Fishing</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="ice-cream-outline" size="large"></ion-icon>
+              <ion-label>Ice-cream</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="paw-outline" size="large"></ion-icon>
+              <ion-label>Pets</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+            <ion-chip>
+              <ion-icon name="telescope-outline" size="large"></ion-icon>
+              <ion-label>Space</ion-label>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-chip>
+
+          </div>
+        </div>
+      </div>
+      
+    </ion-content>  
+  </ng-container>
+
+
+
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)" mode="ios">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button (click)="cancel()">Done</ion-button>
+          </ion-buttons>
+          <ion-title>Update images</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding modal-content">
+
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <img src="https://picsum.photos/200/400?random=10" alt="img-1">
+              <ion-buttons class="delete-image-btns">  
+                <ion-button class="delete-image-btn" id="open-modal" expand="block">
+                  <ion-icon name="trash-outline" size="large" class="delete-img" slot="icon-only"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-col>
+              <ion-col><img src="https://picsum.photos/200/400?random=11" alt="img-1">
+              <ion-buttons class="delete-image-btns">  
+                <ion-button class="delete-image-btn" id="open-modal" expand="block">
+                  <ion-icon name="trash-outline" size="large" class="delete-img" slot="icon-only"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-col>
+            <ion-col>
+              <img src="https://picsum.photos/200/400?random=12" alt="img-1">
+              <ion-buttons class="delete-image-btns">  
+                <ion-button class="delete-image-btn" id="open-modal" expand="block">
+                  <ion-icon name="trash-outline" size="large" class="delete-img" slot="icon-only"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <img src="https://picsum.photos/200/400?random=13" alt="img-1">
+              <ion-buttons class="delete-image-btns">  
+                <ion-button class="delete-image-btn" id="open-modal" expand="block">
+                  <ion-icon name="trash-outline" size="large" class="delete-img" slot="icon-only"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-col>
+            <ion-col class="empty-photo">
+              <ion-buttons class="plus-image-btns">  
+                <ion-button class="plus-image-btn" id="open-modal" expand="block">
+                  <ion-icon name="add-outline" size="large" class="add-img" slot="icon-only"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-col>
+            <ion-col class="empty-photo">
+              <ion-buttons class="plus-image-btns">  
+                <ion-button class="plus-image-btn" id="open-modal" expand="block">
+                  <ion-icon name="add-outline" size="large" class="add-img" slot="icon-only"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-content>
+    </ng-template>
+</ion-modal>
+
+
+  <!-- <ng-container *ngIf="(profile$ | async) as profile; else noProfile">
     <ms-profile-account-details-component></ms-profile-account-details-component>
     <ms-profile-personal-details-component></ms-profile-personal-details-component>
     <ms-profile-contact-details-component></ms-profile-contact-details-component>
     <ms-profile-address-details-component></ms-profile-address-details-component>
     <ms-profile-occupation-details-component></ms-profile-occupation-details-component>
-  </ng-container>
+  </ng-container> -->
   <ng-template #noProfile>
     <ion-grid>
       <ion-row>

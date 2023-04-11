@@ -7,6 +7,7 @@ import { ContactDetailsModule } from './contact-details';
 import { OccupationDetailsModule } from './occupation-details';
 import { PersonalDetailsModule } from './personal-details';
 import { ProfileStatusModule } from './profile-status';
+import { InterestsUiPageComponent } from './interests-ui-page/interests-ui-page.component';
 
 @NgModule({
   imports: [
@@ -27,5 +28,6 @@ import { ProfileStatusModule } from './profile-status';
     PersonalDetailsModule,
     ProfileStatusModule,
   ],
+  declarations: [InterestsUiPageComponent],
 })
 export class ProfileModule {}
