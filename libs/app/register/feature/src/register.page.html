@@ -20,22 +20,6 @@
     </ion-text>
     <ion-list style="margin: 10px;">
       <ion-item fill="outline">
-        <ion-label position="floating" class="required">Name</ion-label>
-        <ion-input
-          minlength="3"
-          maxlength="64"
-          placeholder="Enter your name"
-          required="true"
-          autocomplete="name"
-          formControlName="name"></ion-input>
-      </ion-item>
-      <ion-text
-        *ngIf="name?.invalid && (name?.dirty || name?.touched)"
-        class="ion-padding-start"
-        color="danger">
-        <small>{{ nameError }}</small>
-      </ion-text>
-      <ion-item fill="outline">
         <ion-label position="floating" class="required">Email</ion-label>
         <ion-input
           type="email"
