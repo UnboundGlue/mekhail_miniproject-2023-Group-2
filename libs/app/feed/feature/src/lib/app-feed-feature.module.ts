@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { appFeedFeatureRoutes } from './lib.routes';
 import { FeedPageComponent } from './feed-page/feed-page.component';
 import { CardStackContainerComponent } from './card-stack-container/card-stack-container.component';
+import { CardComponentComponent } from './card-component/card-component.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,10 @@ import { CardStackContainerComponent } from './card-stack-container/card-stack-c
     RouterModule.forChild(appFeedFeatureRoutes),
     IonicModule,
   ],
-  declarations: [FeedPageComponent, CardStackContainerComponent],
+  declarations: [
+    FeedPageComponent,
+    CardStackContainerComponent,
+    CardComponentComponent,
+  ],
 })
 export class AppFeedFeatureModule {}
