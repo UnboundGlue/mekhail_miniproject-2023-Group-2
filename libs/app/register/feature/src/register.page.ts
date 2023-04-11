@@ -17,6 +17,8 @@ export class RegisterPage {
   @Select(actionsExecuting([Register])) busy$!: Observable<ActionsExecuting>;
   registerForm = this.fb.group({
     email: [ '', [Validators.email, Validators.minLength(6), Validators.maxLength(64)],],
+    name: [ '', [Validators.email, Validators.minLength(6), Validators.maxLength(64)],],
+    age: [ '', [Validators.email, Validators.minLength(6), Validators.maxLength(64)],],
     password: ['', [Validators.minLength(6), Validators.maxLength(64)]],
     confirmPassword: ['', [Validators.minLength(6), Validators.maxLength(64)]],
   });

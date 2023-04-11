@@ -23,7 +23,8 @@ export class AuthApi {
     return await signInWithEmailAndPassword(this.auth, email, password);
   }
 
-  async register(email: string, password: string) {
+  async register(email: string,name : string,age : string, password: string) {
+    
     return await createUserWithEmailAndPassword(this.auth, email, password);
   }
 

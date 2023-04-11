@@ -67,10 +67,10 @@ export class AuthState {
   @Action(Register)
   async register(
     ctx: StateContext<AuthStateModel>,
-    { email, password }: Register
+    { email,name,age, password }: Register
   ) {
     try {
-      await this.authApi.register(email, password);
+      await this.authApi.register(email,name,age, password);
       return ctx.dispatch(new Navigate(['home']));
     } catch (error) {
       return ctx.dispatch(new SetError((error as Error).message));
