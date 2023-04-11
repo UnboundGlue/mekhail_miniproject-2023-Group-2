@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 
+import { SentBubbleUiComponent } from '../sent-bubble-ui/sent-bubble-ui.component';
+
 @Component({
   selector: 'mp-messages-page',
   templateUrl: './messages-page.component.html',
@@ -30,4 +32,8 @@ export class MessagesPageComponent {
       this.message = `Hello, ${ev.detail.data}!`;
     }
   }
+
+
+  //FOR SENDING MESSAGES:
+  messageToSend!: string;
 }

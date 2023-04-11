@@ -8,6 +8,11 @@ import { MessagesPageComponent } from './messages-page/messages-page.component';
 import { FormsModule } from '@angular/forms';
 import { FriendsPageComponent } from './friends-page/friends-page.component';
 import { ProfileCardPageComponent } from './profile-card-page/profile-card-page.component';
+import { MatchesPageComponent } from './matches-page/matches-page.component';
+import { SentBubbleUiComponent } from './sent-bubble-ui/sent-bubble-ui.component';
+import { ReceivedBubbleUiComponent } from './received-bubble-ui/received-bubble-ui.component';
+import { ReceivedEmojiUiComponent } from './received-emoji-ui/received-emoji-ui.component';
+import { SentEmojiUiComponent } from './sent-emoji-ui/sent-emoji-ui.component';
 
 @NgModule({
   imports: [
@@ -21,6 +26,11 @@ import { ProfileCardPageComponent } from './profile-card-page/profile-card-page.
     MessagesPageComponent,
     FriendsPageComponent,
     ProfileCardPageComponent,
+    MatchesPageComponent,
+    SentBubbleUiComponent,
+    ReceivedBubbleUiComponent,
+    ReceivedEmojiUiComponent,
+    SentEmojiUiComponent,
   ],
 })
 export class AppChatFeatureModule {}

@@ -74,104 +74,28 @@
             </div>
 
             <!-- FROM THEM -->
-            <div class="message-outer-wrapper">
-                <div class="img-outer-wrapper from-them-img-outer-wrapper">
-                    <div class="img-holder">
-                        <img src="https://docs-demo.ionic.io/assets/madison.jpg" alt="The Wisconsin State Capitol building in Madison, WI at night">
-                    </div>
-                </div>
-                <div class="receive-chat-bubble">
-                    <p class="from-them">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, officiis! Iusto sunt eveniet sint eum accusantium praesentium quis maiores dolor minus adipisci iure quibusdam facilis animi, nostrum velit unde dicta?</p>
-                </div>
-            </div>
+            <mp-received-bubble-ui></mp-received-bubble-ui>
 
             <!-- FROM THEM -->
-            <div class="message-outer-wrapper">
-                <div class="img-outer-wrapper from-them-img-outer-wrapper">
-                    <div class="img-holder">
-                        <img src="https://docs-demo.ionic.io/assets/madison.jpg" alt="The Wisconsin State Capitol building in Madison, WI at night">
-                    </div>
-                </div>
-                <div class="receive-chat-bubble">
-                    <p class="from-them">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, officiis! Iusto sunt eveniet sint eum accusantium praesentium quis maiores dolor minus adipisci iure quibusdam facilis animi, nostrum velit unde dicta?</p>
-                </div>
-            </div>
+            <mp-received-bubble-ui></mp-received-bubble-ui>
 
             <!-- FROM THEM -->
-            <div class="message-outer-wrapper">
-                <div class="img-outer-wrapper from-them-img-outer-wrapper">
-                    <div class="img-holder">
-                        <img src="https://docs-demo.ionic.io/assets/madison.jpg" alt="The Wisconsin State Capitol building in Madison, WI at night">
-                    </div>
-                </div>
-                <div class="receive-chat-bubble">
-                    <p class="from-them">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, officiis! Iusto sunt eveniet sint eum accusantium praesentium quis maiores dolor minus adipisci iure quibusdam facilis animi, nostrum velit unde dicta?</p>
-                </div>
-            </div>
+            <mp-received-bubble-ui></mp-received-bubble-ui>
 
             <!-- FROM THEM -->
-            <div class="message-outer-wrapper">
-                <div class="img-outer-wrapper from-them-img-outer-wrapper">
-                    <div class="img-holder">
-                        <img src="https://docs-demo.ionic.io/assets/madison.jpg" alt="The Wisconsin State Capitol building in Madison, WI at night">
-                    </div>
-                </div>
-                <div class="receive-chat-bubble">
-                    <p class="from-them">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, officiis! Iusto sunt eveniet sint eum accusantium praesentium quis maiores dolor minus adipisci iure quibusdam facilis animi, nostrum velit unde dicta?</p>
-                </div>
-            </div>
+            <mp-received-bubble-ui></mp-received-bubble-ui>
 
             <!-- FROM ME -->
-            <div class="message-outer-wrapper from-me-message-outer-wrapper">
-                <div class="receive-chat-bubble">
-                    <p class="from-me">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, officiis! Iusto sunt eveniet sint eum accusantium praesentium quis maiores dolor minus adipisci iure quibusdam facilis animi, nostrum velit unde dicta?</p>
-                </div>
+            <mp-sent-bubble-ui></mp-sent-bubble-ui>
 
-                <div class="img-outer-wrapper from-me-img-outer-wrapper">
-                    <div class="img-holder">
-                        <img src="https://docs-demo.ionic.io/assets/madison.jpg" alt="The Wisconsin State Capitol building in Madison, WI at night">
-                    </div>
-                </div>
-            </div>
+            <!-- FROM THEM -->
+            <mp-received-emoji-ui></mp-received-emoji-ui>
 
             <!-- FROM ME -->
-            <div class="message-outer-wrapper from-me-message-outer-wrapper">
-                <div class="receive-chat-bubble">
-                    <p class="from-me">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, officiis! Iusto sunt eveniet sint eum accusantium praesentium quis maiores dolor minus adipisci iure quibusdam facilis animi, nostrum velit unde dicta?</p>
-                </div>
-
-                <div class="img-outer-wrapper from-me-img-outer-wrapper">
-                    <div class="img-holder">
-                        <img src="https://docs-demo.ionic.io/assets/madison.jpg" alt="The Wisconsin State Capitol building in Madison, WI at night">
-                    </div>
-                </div>
-            </div>
+            <mp-sent-bubble-ui></mp-sent-bubble-ui>
 
             <!-- FROM ME -->
-            <div class="message-outer-wrapper from-me-message-outer-wrapper">
-                <div class="receive-chat-bubble">
-                    <p class="from-me">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, officiis! Iusto sunt eveniet sint eum accusantium praesentium quis maiores dolor minus adipisci iure quibusdam facilis animi, nostrum velit unde dicta?</p>
-                </div>
-
-                <div class="img-outer-wrapper from-me-img-outer-wrapper">
-                    <div class="img-holder">
-                        <img src="https://docs-demo.ionic.io/assets/madison.jpg" alt="The Wisconsin State Capitol building in Madison, WI at night">
-                    </div>
-                </div>
-            </div>
-
-            <!-- FROM ME -->
-            <div class="message-outer-wrapper from-me-message-outer-wrapper">
-                <div class="receive-chat-bubble">
-                    <p class="from-me no-tail emoji">👍🏻</p>
-                </div>
-
-                <div class="img-outer-wrapper from-me-img-outer-wrapper">
-                    <div class="img-holder">
-                        <img src="https://docs-demo.ionic.io/assets/madison.jpg" alt="The Wisconsin State Capitol building in Madison, WI at night">
-                    </div>
-                </div>
-            </div>
+            <mp-sent-emoji-ui></mp-sent-emoji-ui>
 
         </div>
 
@@ -236,9 +160,13 @@
         </ion-modal>
 
         <div class="messege-send-area">
-            <ion-input label="Input with placeholder" placeholder="Enter message" class="message-send-input"></ion-input>
+            <ion-input label="Input with placeholder" placeholder="Enter message" class="message-send-input" [(ngModel)]="messageToSend"></ion-input>
             <div class="send-button-wrapper">
-                <ion-icon name="send-outline"></ion-icon>
+                <ion-buttons>  
+                    <ion-button>
+                      <ion-icon name="send-outline" slot="icon-only"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
             </div>
         </div>
     </ion-content>  
