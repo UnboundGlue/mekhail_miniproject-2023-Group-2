@@ -7,7 +7,9 @@ import { Action, State, StateContext } from '@ngxs/store';
 export interface RegisterStateModel {
   registerForm: {
     model: {
-      displayName: string | null;
+      firstName: string | null;
+      lastName: string | null;
+      gender: string | null;
       age : string | null;
       email: string | null;
       password: string | null;
@@ -23,7 +25,9 @@ export interface RegisterStateModel {
   defaults: {
     registerForm: {
       model: {
-        displayName: null,
+        firstName: null,
+        lastName: null,
+        gender: null,
         age : null,
         email: null,
         password: null,
@@ -41,14 +45,16 @@ export class RegisterState {
     try {
       const state = ctx.getState();
       const email = state.registerForm.model.email;
-      const name = state.registerForm.model.displayName;
+      const firstName = state.registerForm.model.firstName;
+      const lastName = state.registerForm.model.lastName;
+      const gender = state.registerForm.model.gender;
       const age = state.registerForm.model.age;
       const password = state.registerForm.model.password;
 
-      if (email && name && age && password) {
-        return ctx.dispatch(new AuthRegister(" ",age," "," ",email, password));
+      if (email && firstName && lastName && gender && age && password) {
+        return ctx.dispatch(new AuthRegister(gender ,age, firstName, lastName ,email, password));
       }
-      return ctx.dispatch(new SetError('Email or password or age or username'));
+      return ctx.dispatch(new SetError('Invalid input'));
     } catch (error) {
       return ctx.dispatch(new SetError((error as Error).message));
     }

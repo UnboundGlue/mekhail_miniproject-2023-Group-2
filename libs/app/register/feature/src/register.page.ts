@@ -16,7 +16,9 @@ import { Observable } from 'rxjs';
 export class RegisterPage {
   @Select(actionsExecuting([Register])) busy$!: Observable<ActionsExecuting>;
   registerForm = this.fb.group({
-    displayName: [ '', [ Validators.minLength(6), Validators.maxLength(64)],],
+    firstName: [ '', [ Validators.minLength(6), Validators.maxLength(64)],],
+    lastName: [ '', [ Validators.minLength(6), Validators.maxLength(64)],],
+    gender: [ '', [ Validators.minLength(6), Validators.maxLength(64)],],
     age: [ '', [ Validators.minLength(1), Validators.maxLength(3)],],
     email: [ '', [Validators.email, Validators.minLength(6), Validators.maxLength(64)],],
     password: ['', [Validators.minLength(6), Validators.maxLength(64)]],
@@ -24,11 +26,16 @@ export class RegisterPage {
   });
   showPassword = false;
 
+  //add firstname lastname gender
   get email() {
     return this.registerForm.get('email');
   }
 
-  get displayName() {
+  get firstName() {
+    return this.registerForm.get('username');
+  }
+
+  get lastName() {
     return this.registerForm.get('username');
   }
 
@@ -65,10 +72,10 @@ export class RegisterPage {
   }
 
   get displayNameError(): string {
-    if (this.displayName?.errors?.['required']) return 'Username is required';
-    if (this.displayName?.errors?.['minlength'])
+    if (this.firstName?.errors?.['required']) return 'Username is required';
+    if (this.firstName?.errors?.['minlength'])
       return 'Username should be longer than 6 characters';
-    if (this.displayName?.errors?.['maxlength'])
+    if (this.firstName?.errors?.['maxlength'])
       return 'Username should be shorter than 64 characters';
 
     return 'Username is invalid';
