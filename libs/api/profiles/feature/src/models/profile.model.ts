@@ -1,18 +1,10 @@
 import {
-    AccountDetailsUpdatedEvent,
-    AddressDetailsUpdatedEvent,
     ContactDetailsUpdatedEvent,
-    IAccountDetails,
-    IAddressDetails,
     IContactDetails,
-    IOccupationDetails,
     IPersonalDetails,
     IProfile,
-    OccupationDetailsUpdatedEvent,
     PersonalDetailsUpdatedEvent,
     ProfileCreatedEvent,
-    ProfileStatus,
-    ProfileStatusUpdatedEvent,
     AgeGroup,Gender
 } from '@mp/api/profiles/util';
 import { AggregateRoot } from '@nestjs/cqrs';
@@ -74,8 +66,8 @@ export class Profile extends AggregateRoot implements IProfile {
       this.ContactDetails.Cell = ContactDetails.Cell
       ? ContactDetails.Cell
       : this.ContactDetails.Cell;
-    this.ContactDetails.email = ContactDetails.email
-    ? ContactDetails.email
+    this.ContactDetails.Email = ContactDetails.Email
+    ? ContactDetails.Email
     : this.ContactDetails.Cell;
     this.apply(new ContactDetailsUpdatedEvent(this.toJSON()));
     }
@@ -96,19 +88,16 @@ export class Profile extends AggregateRoot implements IProfile {
     };
   }
 
-  // updatePersonalDetails(personalDetails: IPersonalDetails) {
-  //   if (!this.personalDetails) this.personalDetails = {};
-  //   this.personalDetails.age = personalDetails.age
-  //     ? personalDetails.age
-  //     : this.personalDetails.age;
-  //   this.personalDetails.gender = personalDetails.gender
-  //     ? personalDetails.gender
-  //     : this.personalDetails.gender;
-  //   this.personalDetails.ethnicity = personalDetails.ethnicity
-  //     ? personalDetails.ethnicity
-  //     : this.personalDetails.ethnicity;
-  //   this.apply(new PersonalDetailsUpdatedEvent(this.toJSON()));
-  // }
+  updatePersonalDetails(personalDetails: IPersonalDetails) {
+    if (!this.Name) this.Name = {};
+    this.Name.Firstname = personalDetails.Firstname
+      ? personalDetails.Firstname
+      : this.Name.Firstname;
+    this.Name.Lastname = personalDetails.Lastname
+      ? personalDetails.Lastname
+      : this.Name.Lastname;
+    this.apply(new PersonalDetailsUpdatedEvent(this.toJSON()));
+  }
 
   // updateOccupationDetails(occupationDetails: IOccupationDetails) {
   //   if (!this.occupationDetails) this.occupationDetails = {};
