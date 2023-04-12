@@ -11,12 +11,19 @@
     grid-column-start: 1;
     grid-column-end: 13;
     background-color: #1c2154;
-    //display: grid;
-    //grid-template-rows: repeat(6, 1fr);
-    //grid-template-columns: repeat(6, 1fr);
     .swipe-card-component {
       height: 80%;
       margin-top: 5rem;
+
+      .image-swipe-area{
+        height: 25rem;
+
+        img {
+          height: 25rem;
+          background-size: contain;
+          background-position: center;
+        }
+      }
     }
   }
 
@@ -29,11 +36,24 @@
     display: flex;
     justify-content: space-around;
     padding-top: 1.2rem;
-    //background-color: #cb0009;
     padding-bottom: 2rem;
 
     button {
-      padding: 1.2rem;
+      height: 4rem;
+      width: 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      border-radius: 100px;
+
+      .like-icon{
+        color: #cb0009;
+      }
+
+      .dislike-icon {
+        color: #cb0009;
+      }
     }
   }
 
