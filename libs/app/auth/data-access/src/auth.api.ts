@@ -9,9 +9,9 @@ import {
   updatePassword,
   sendPasswordResetEmail
 } from '@angular/fire/auth';
-import {
-  IRegister,IRegisterAuthRequest,IRegisterAuthResponse
-} from '@mp/api/auth/util';
+// import {
+//   IRegister,IRegisterAuthRequest,IRegisterAuthResponse
+// } from '@mp/api/auth/util';
 import { signOut } from '@firebase/auth';
 
 @Injectable()
