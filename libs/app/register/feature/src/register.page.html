@@ -20,39 +20,71 @@
       <h1 class="ion-text-center">Create an account</h1>
     </ion-text>
     <ion-list style="margin-left: 20px; margin-right: 20px;">
-      <ion-item fill="outline">
-        <ion-label position="floating" class="required">Full Name</ion-label>
+      <ion-item>
+        <ion-label position="floating" class="required">First Name</ion-label>
         <ion-input
-          minlength="6"
+          minlength="1"
           maxlength="64"
           placeholder="Enter full name"
           required="true"
-          autocomplete="displayName"
-          formControlName="displayName"></ion-input>
+          autocomplete="firstName"
+          formControlName="firstName"></ion-input>
       </ion-item>
       <ion-text
         *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)"
         class="ion-padding-start"
         color="danger">
-        <small>{{ displayNameError }}</small>
+        <small>{{ displayFirstNameError }}</small>
       </ion-text>
-        <ion-item fill="outline">
-          <ion-label position="floating" class="required">Age</ion-label>
-          <ion-input
-            minlength="1"
-            maxlength="3"
-            placeholder="Enter age"
-            required="true"
-            autocomplete="age"
-            formControlName="age"></ion-input>
-        </ion-item>
-        <ion-text
-          *ngIf="age?.invalid && (age?.dirty || age?.touched)"
-          class="ion-padding-start"
-          color="danger">
-          <small>{{ ageError }}</small>
-        </ion-text>
-      <ion-item fill="outline">
+      <ion-item>
+        <ion-label position="floating" class="required">Last Name</ion-label>
+        <ion-input
+          minlength="1"
+          maxlength="64"
+          placeholder="Enter full name"
+          required="true"
+          autocomplete="lastName"
+          formControlName="lastName"></ion-input>
+      </ion-item>
+      <ion-text
+        *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)"
+        class="ion-padding-start"
+        color="danger">
+        <small>{{ displayLastNameError }}</small>
+      </ion-text>
+      <ion-item>
+        <ion-label position="floating" class="required">Age</ion-label>
+        <ion-input
+          type="number"
+          pattern="[0-9]+"
+          placeholder="Enter age"
+          required="true"
+          autocomplete="age"
+          formControlName="age"></ion-input>
+      </ion-item>
+      <ion-text
+        *ngIf="age?.invalid && (age?.dirty || age?.touched)"
+        class="ion-padding-start"
+        color="danger">
+        <small>{{ ageError }}</small>
+      </ion-text>
+      <ion-item>
+        <ion-label position="floating" class="required">Gender</ion-label>
+        <ion-select 
+          aria-label="Gender" 
+          placeholder="Select Gender"
+          formControlName="gender">
+          <ion-select-option value="male">Male</ion-select-option>
+          <ion-select-option value="female">Female</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-text
+        *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+        class="ion-padding-start"
+        color="danger">
+        <small>{{ emailError }}</small>
+      </ion-text>
+      <ion-item>
         <ion-label position="floating" class="required">Email</ion-label>
         <ion-input
           type="email"
@@ -69,7 +101,7 @@
         color="danger">
         <small>{{ emailError }}</small>
       </ion-text>
-      <ion-item fill="outline">
+      <ion-item>
         <ion-label position="floating" class="required">Password</ion-label>
         <ion-input
           [type]="showPassword ? 'text' : 'password'"
@@ -91,7 +123,7 @@
         color="danger">
         <small>{{ passwordError }}</small>
       </ion-text>
-      <ion-item fill="outline">
+      <ion-item>
         <ion-label position="floating" class="required">Confirm Password</ion-label>
         <ion-input
           type="password"

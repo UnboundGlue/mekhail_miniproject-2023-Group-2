@@ -16,9 +16,9 @@ import { Observable } from 'rxjs';
 export class RegisterPage {
   @Select(actionsExecuting([Register])) busy$!: Observable<ActionsExecuting>;
   registerForm = this.fb.group({
-    firstName: [ '', [ Validators.minLength(6), Validators.maxLength(64)],],
-    lastName: [ '', [ Validators.minLength(6), Validators.maxLength(64)],],
-    gender: [ '', [ Validators.minLength(6), Validators.maxLength(64)],],
+    firstName: [ '', [ Validators.maxLength(64)],],
+    lastName: [ '', [ Validators.maxLength(64)],],
+    gender: [ '', [ Validators.minLength(3), Validators.maxLength(64)],],
     age: [ '', [ Validators.minLength(1), Validators.maxLength(3)],],
     email: [ '', [Validators.email, Validators.minLength(6), Validators.maxLength(64)],],
     password: ['', [Validators.minLength(6), Validators.maxLength(64)]],
@@ -32,11 +32,15 @@ export class RegisterPage {
   }
 
   get firstName() {
-    return this.registerForm.get('username');
+    return this.registerForm.get('firstName');
   }
 
   get lastName() {
-    return this.registerForm.get('username');
+    return this.registerForm.get('lastName');
+  }
+
+  get gender(){
+    return this.registerForm.get('gender');
   }
 
   get age() {
@@ -62,21 +66,25 @@ export class RegisterPage {
   }
 
   get ageError(): string {
-    if (this.age?.errors?.['required']) return 'age is required';
+    if (this.age?.errors?.['required']) return 'Age is required';
     if (this.age?.errors?.['minlength'])
-      return 'age should be longer than 0 characters';
+      return 'Age should be longer than 0 characters';
     if (this.age?.errors?.['maxlength'])
-      return 'age should be shorter than 4 characters';
-
-    return 'age is invalid';
+      return 'Age should be shorter than 4 characters';
+    return 'Age is invalid';
   }
 
-  get displayNameError(): string {
-    if (this.firstName?.errors?.['required']) return 'Username is required';
-    if (this.firstName?.errors?.['minlength'])
-      return 'Username should be longer than 6 characters';
+  get displayFirstNameError(): string {
+    if (this.firstName?.errors?.['required']) return 'First Name is required';
     if (this.firstName?.errors?.['maxlength'])
-      return 'Username should be shorter than 64 characters';
+      return 'First Name should be shorter than 64 characters';
+
+    return 'Username is invalid';
+  }
+  get displayLastNameError(): string {
+    if (this.lastName?.errors?.['required']) return 'Last Name is required';
+    if (this.lastName?.errors?.['maxlength'])
+      return 'Last Name should be shorter than 64 characters';
 
     return 'Username is invalid';
   }
