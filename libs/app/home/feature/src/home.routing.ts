@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home.page';
 
 import {MessagesPageComponent} from '../../../chat/feature/src/lib/messages-page/messages-page.component'
+import { VerifyPageComponent } from 'libs/app/chat/feature/src/lib/verify-page/verify-page.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,11 @@ const routes: Routes = [
     path: 'chat/messages',
     pathMatch: 'full',
     component: MessagesPageComponent
+  },
+  {
+    path: 'chat/verify',
+    pathMatch: 'full',
+    component: VerifyPageComponent
   }
 ];
 

@@ -105,33 +105,41 @@
             <ng-template>
               <ion-header>
                 <ion-toolbar>
-                  <ion-buttons slot="end">
-                    <ion-button (click)="cancel()">Cancel</ion-button>
-                  </ion-buttons>
                   <ion-title>Meeting Details</ion-title>
+                  <ion-buttons slot="start">
+                    <ion-button (click)="openVerifyPage()">Verify</ion-button>
+                  </ion-buttons>
+                  <ion-buttons slot="end">
+                    <ion-button (click)="cancel()">Done</ion-button>
+                  </ion-buttons>
                 </ion-toolbar>
               </ion-header>
               <ion-content class="ion-padding modal-content">
 
-                <ion-label position="stacked">Select a date for the meeting</ion-label>
-                <div class="meeting-input">
-                    <ion-input label="Input with placeholder" type="date"></ion-input>
-                </div>
+                <p class="error-msg" style="margin-top: 0.5em;" *ngIf="!verifyPass && showVerifyError">You need to first confirm your meeting</p>
 
-                <ion-label position="stacked">Select a time for the meeting</ion-label>
+                <ion-label position="stacked">Select a date for the meeting<sup>*</sup></ion-label>
                 <div class="meeting-input">
-                    <ion-input label="Input with placeholder" type="time"></ion-input>
+                    <ion-input label="Input with placeholder" type="date" [(ngModel)]="dateSelected"></ion-input>
                 </div>
+                <p class="error-msg" *ngIf="!datePass && showErrors">Date is a required field</p>
 
-                <ion-label position="stacked">Select a location for the meeting</ion-label>
+                <ion-label position="stacked">Select a time for the meeting<sup>*</sup></ion-label>
                 <div class="meeting-input">
-                    <ion-input label="Input with placeholder" placeholder="Enter Location" type="text" [(ngModel)]="name"></ion-input>
+                    <ion-input label="Input with placeholder" type="time" [(ngModel)]="timeSelected"></ion-input>
                 </div>
+                <p class="error-msg" *ngIf="!timePass && showErrors">Time is a required field</p>
+
+                <ion-label position="stacked">Select a location for the meeting<sup>*</sup></ion-label>
+                <div class="meeting-input">
+                    <ion-input label="Input with placeholder" placeholder="Enter Location" type="text" [(ngModel)]="locationSelected"></ion-input>
+                </div>
+                <p class="error-msg" *ngIf="!locationPass && showErrors">Location is a required field</p>
 
                 <ion-label position="stacked">Select a food preference if any</ion-label>
                 <ion-list>
-                    <ion-select aria-label="food" placeholder="Select Food Preference">
-                        <ion-select-option value="none">None</ion-select-option>
+                    <ion-select aria-label="food" placeholder="Select Food Preference" value="none">
+                        <ion-select-option value="none" default>None</ion-select-option>
                         <ion-select-option value="vegan">Vegan</ion-select-option>
                         <ion-select-option value="pescatarian">Pescatarian</ion-select-option>
                         <ion-select-option value="halaal">Halaal</ion-select-option>
@@ -141,7 +149,7 @@
 
                 <ion-label position="stacked">Select a dress code if any</ion-label>
                 <ion-list>
-                    <ion-select aria-label="dress" placeholder="Select Dress Code">
+                    <ion-select aria-label="dress" placeholder="Select Dress Code" value="none">
                         <ion-select-option value="none">None</ion-select-option>
                         <ion-select-option value="casual">Casual</ion-select-option>
                         <ion-select-option value="black_tie">Black-tie</ion-select-option>
@@ -152,7 +160,7 @@
                 </ion-list>
 
                 <div class="button-flex-wrapper">
-                    <ion-button class="verifyButton" (click)="confirm()" [strong]="true" expand="block" shape="round">Verify</ion-button>
+                    <ion-button class="verifyButton" (click)="confirm()" [strong]="true" expand="block" shape="round">Confirm</ion-button>
                 </div>
 
               </ion-content>

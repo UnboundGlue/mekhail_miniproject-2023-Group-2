@@ -13,6 +13,7 @@ import { SentBubbleUiComponent } from './sent-bubble-ui/sent-bubble-ui.component
 import { ReceivedBubbleUiComponent } from './received-bubble-ui/received-bubble-ui.component';
 import { ReceivedEmojiUiComponent } from './received-emoji-ui/received-emoji-ui.component';
 import { SentEmojiUiComponent } from './sent-emoji-ui/sent-emoji-ui.component';
+import { VerifyPageComponent } from './verify-page/verify-page.component';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { SentEmojiUiComponent } from './sent-emoji-ui/sent-emoji-ui.component';
     ReceivedBubbleUiComponent,
     ReceivedEmojiUiComponent,
     SentEmojiUiComponent,
+    VerifyPageComponent,
   ],
 })
 export class AppChatFeatureModule {}

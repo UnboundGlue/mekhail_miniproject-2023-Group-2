@@ -87,7 +87,7 @@ ion-button.verifyButton {
     margin-top: 0em;
     width: 50%;
     --background: coral;
-    --background-hover: white;
+    --background-hover: rgb(245, 156, 123);
     // --background-activated: #88f4be;
     // --background-focused: #88f4be;
   
@@ -292,4 +292,14 @@ ion-button.verifyButton {
     margin-right: 1em;
 
     height: 50px;
+  }
+
+  //error messages
+  .error-msg{
+    color: red;
+    padding: 0;
+    margin: 0;
+    font-size: 0.8em;
+    margin-top: -1.8em;
+    margin-bottom: 2em;
   }
