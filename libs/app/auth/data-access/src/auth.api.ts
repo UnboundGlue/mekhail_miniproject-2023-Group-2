@@ -6,6 +6,8 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
+  updatePassword,
+  sendPasswordResetEmail
 } from '@angular/fire/auth';
 import { signOut } from '@firebase/auth';
 
@@ -24,6 +26,30 @@ export class AuthApi {
   async register(email: string, password: string) {
     return await createUserWithEmailAndPassword(this.auth, email, password);
   }
+
+  async resetPassword(email: string, password: string, newPassword : string) {
+
+    try {
+      const userCredential =  await  this.login(email,password);
+      return await updatePassword(userCredential.user, newPassword);
+    }
+    catch(error)  { // invalid password
+      console.error(error);
+      console.log("meep")
+    };
+  }
+
+  async forgotPassword(email: string) {
+    try {
+      return await sendPasswordResetEmail(this.auth,email);
+    }
+    catch(error)  { // invalid password
+      console.error(error);
+      console.log("meep")
+    };
+  }
+
+
 
   async continueWithGoogle() {
     const provider = new GoogleAuthProvider();

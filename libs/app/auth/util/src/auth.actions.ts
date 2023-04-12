@@ -25,6 +25,22 @@ export class Register {
   ) {}
 }
 
+export class ResetPassword {
+  static readonly type = '[Auth] ResetPassword';
+  constructor(
+    public readonly email: string,
+    public readonly password: string,
+    public readonly newPassword: string
+  ) {}
+}
+
+export class ForgotPassword {
+  static readonly type = '[Auth] ForgotPassword';
+  constructor(
+    public readonly email: string,
+  ) {}
+}
+
 export class ContinueWithGoogle {
   static readonly type = '[Auth] ContinueWithGoogle';
 }

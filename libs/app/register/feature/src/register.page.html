@@ -14,12 +14,28 @@
     </ion-toolbar>
   </ion-header>
 
-  <form
-    [formGroup]="registerForm"
-    ngxsForm="register.registerForm"
-    (submit)="register()">
-    <ion-list class="ion-padding-vertical">
-      <ion-item>
+  <form [formGroup]="registerForm" ngxsForm="register.registerForm" (submit)="register()">
+    <ion-text>
+      <h1 class="ion-text-center">Create an account</h1>
+    </ion-text>
+    <ion-list style="margin: 10px;">
+      <ion-item fill="outline">
+        <ion-label position="floating" class="required">Name</ion-label>
+        <ion-input
+          minlength="3"
+          maxlength="64"
+          placeholder="Enter your name"
+          required="true"
+          autocomplete="name"
+          formControlName="name"></ion-input>
+      </ion-item>
+      <ion-text
+        *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+        class="ion-padding-start"
+        color="danger">
+        <small>{{ nameError }}</small>
+      </ion-text>
+      <ion-item fill="outline">
         <ion-label position="floating" class="required">Email</ion-label>
         <ion-input
           type="email"
@@ -36,7 +52,7 @@
         color="danger">
         <small>{{ emailError }}</small>
       </ion-text>
-      <ion-item>
+      <ion-item fill="outline">
         <ion-label position="floating" class="required">Password</ion-label>
         <ion-input
           [type]="showPassword ? 'text' : 'password'"
@@ -58,6 +74,22 @@
         color="danger">
         <small>{{ passwordError }}</small>
       </ion-text>
+      <ion-item fill="outline">
+        <ion-label position="floating" class="required">Confirm Password</ion-label>
+        <ion-input
+          minlength="6"
+          maxlength="64"
+          placeholder="Confirm your password"
+          required="true"
+          autocomplete="confirmPassword"
+          formControlName="confirmPassword"></ion-input>
+      </ion-item>
+      <ion-text
+        *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)"
+        class="ion-padding-start"
+        color="danger">
+        <small>{{ confirmError }}</small>
+      </ion-text>
     </ion-list>
 
     <ion-grid class="ion-padding">
@@ -77,14 +109,6 @@
           Already have an account?
           <ion-nav-link routerLink="/login">
             <ion-text color="primary">Login</ion-text>
-          </ion-nav-link>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col class="ion-text-center">
-          Having trouble?
-          <ion-nav-link routerLink="/forgot">
-            <ion-text color="primary">Forgot Password</ion-text>
           </ion-nav-link>
         </ion-col>
       </ion-row>

@@ -13,10 +13,12 @@
       <ion-title size="large">Login</ion-title>
     </ion-toolbar>
   </ion-header>
-
   <form [formGroup]="loginForm" ngxsForm="login.loginForm" (submit)="login()">
-    <ion-list class="ion-padding-vertical">
-      <ion-item>
+    <ion-text>
+      <h1 class="ion-text-center">Welcome Back</h1>
+    </ion-text>
+    <ion-list style="margin: 10px;">
+      <ion-item fill="outline">
         <ion-label position="floating" class="required">Email</ion-label>
         <ion-input
           type="email"
@@ -33,7 +35,7 @@
         color="danger">
         <small>{{ emailError }}</small>
       </ion-text>
-      <ion-item>
+      <ion-item fill="outline">
         <ion-label position="floating" class="required">Password</ion-label>
         <ion-input
           [type]="showPassword ? 'text' : 'password'"
