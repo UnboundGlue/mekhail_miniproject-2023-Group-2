@@ -23,15 +23,6 @@ import { AggregateRoot } from '@nestjs/cqrs';
 export class Profile extends AggregateRoot implements IProfile {
   constructor(
 
-    // public UID?: string;
-    // TimeRemaining?: Int16Array; 
-    // RecentlyActive?: boolean | null | undefined;
-    // Gender?: Gender | null | undefined;
-    // Age?: AgeGroup | null | undefined;
-    // Hobby?: string[] | null | undefined;
-    // Name?: IPersonalDetails | null | undefined;
-    // ContactDetails?: IContactDetails | null | undefined;
-    // created?: Timestamp | null | undefined;
     public UID: string,
     public TimeRemaining?: number | null | undefined,
     public RecentlyActive?: boolean | null | undefined,
