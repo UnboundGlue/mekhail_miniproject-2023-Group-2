@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title class="ion-align-items-center">
       Profile
-      <ng-container *ngIf="(profile$ | async) as profile;">
+      <!-- <ng-container *ngIf="(profile$ | async) as profile;">
         <ion-icon
           *ngIf="profile.status == 'Incomplete'"
           color="danger"
@@ -11,7 +11,7 @@
           *ngIf="profile.status == 'Complete'"
           color="success"
           name="checkmark-circle-outline"></ion-icon>
-      </ng-container>
+      </ng-container> -->
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -20,7 +20,7 @@
     <ion-toolbar>
       <ion-title size="large" class="ion-align-items-center">
         Profile
-        <ng-container *ngIf="(profile$ | async) as profile;">
+        <!-- <ng-container *ngIf="(profile$ | async) as profile;">
           <ion-icon
             *ngIf="profile.status == 'Incomplete'"
             color="danger"
@@ -29,7 +29,7 @@
             *ngIf="profile.status == 'Complete'"
             color="success"
             name="checkmark-circle-outline"></ion-icon>
-        </ng-container>
+        </ng-container> -->
       </ion-title>
     </ion-toolbar>
   </ion-header>
@@ -185,6 +185,7 @@
   </ng-container>
 
 
+  <input type="file" (change)="onFileSelected($event)" #fileInput style="display: none" accept="image/*">
 
   <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)" mode="ios">
     <ng-template>
@@ -235,14 +236,14 @@
             </ion-col>
             <ion-col class="empty-photo">
               <ion-buttons class="plus-image-btns">  
-                <ion-button class="plus-image-btn" id="open-modal" expand="block">
+                <ion-button class="plus-image-btn" id="open-modal" expand="block" (click)="fileInput.click()">
                   <ion-icon name="add-outline" size="large" class="add-img" slot="icon-only"></ion-icon>
                 </ion-button>
               </ion-buttons>
             </ion-col>
             <ion-col class="empty-photo">
               <ion-buttons class="plus-image-btns">  
-                <ion-button class="plus-image-btn" id="open-modal" expand="block">
+                <ion-button class="plus-image-btn" id="open-modal" expand="block" (click)="fileInput.click()">
                   <ion-icon name="add-outline" size="large" class="add-img" slot="icon-only"></ion-icon>
                 </ion-button>
               </ion-buttons>

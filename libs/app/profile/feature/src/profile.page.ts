@@ -54,8 +54,16 @@ export class ProfilePage {
     }
   }
 
+  onFileSelected(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      // Perform any action you want with the file, such as uploading it to a server
+      alert(file.name);
+    }
+  }
+
   //INTERESTS FUNCTIONALITY
-  showGamesTick = true;
+  showGamesTick = false;
   showFootballTick = false;
   showReadingTick = false;
   showMusicTick = false;
