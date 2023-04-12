@@ -14,14 +14,23 @@ import { OverlayEventDetail } from '@ionic/core/components';
 export class ProfilePage {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
 
-
   //TEXT COUNTERS FOR INPUTS
   aboutMeText!: string;
-  remainingAboutMeChars = 200;
+  majorText!: string;
+  phoneText!: string;
+  emailText!: string;
 
-  onInputChange(event:any) {
+  remainingAboutMeChars = 50;
+  remainingMajorChars = 50;
+
+  onAboutMeChange(event:any) {
     const inputLength = event.target.value.length;
-    this.remainingAboutMeChars = 200 - inputLength;
+    this.remainingAboutMeChars = 50 - inputLength;
+  }
+
+  onMajorChange(event:any) {
+    const inputLength = event.target.value.length;
+    this.remainingMajorChars = 50 - inputLength;
   }
 
   //IMAGES MODAL
@@ -44,4 +53,22 @@ export class ProfilePage {
       this.message = `Hello, ${ev.detail.data}!`;
     }
   }
+
+  //INTERESTS FUNCTIONALITY
+  showGamesTick = true;
+  showFootballTick = false;
+  showReadingTick = false;
+  showMusicTick = false;
+  showWritingTick = false;
+  showBasketballTick = false;
+  showGymTick = false;
+  showArtTick = false;
+  showPhotographyTick = false;
+  showTravelTick = false;
+  showTakeOutTick = false;
+  showWineTick = false;
+  showFishingTick = false;
+  showIceCreamTick = false;
+  showPetsTick = false;
+  showSpaceTick = false;
 }

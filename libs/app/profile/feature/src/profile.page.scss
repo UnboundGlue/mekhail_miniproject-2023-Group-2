@@ -144,7 +144,7 @@ h2{
   margin-top: 0;
   padding-top: 0;
   margin-right: 0.5em;
-  margin-bottom: 2em;
+  margin-bottom: 0.5em;
   color: coral;
 }
 
@@ -209,4 +209,21 @@ ion-col img{
 
 .interests-buttons{
   width: 100%;
+}
+
+//
+.interests-div{
+  margin-bottom: 1em;
+}
+
+.margin-bottom-half{
+  margin-bottom: 0.5em;
+}
+
+.show-tick{
+  display: block;
+}
+
+.hide-tick{
+  display: none;
 }
