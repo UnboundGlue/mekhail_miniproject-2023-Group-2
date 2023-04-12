@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 // import { ContactDetailsModule } from './contact-details';
 // import { OccupationDetailsModule } from './occupation-details';
 import { PersonalDetailsModule } from './personal-details';
-import { ProfileStatusModule } from './profile-status';
+//import { ProfileStatusModule } from './profile-status';
 // import { InterestsUiPageComponent } from './interests-ui-page/interests-ui-page.component';
 
 @NgModule({
@@ -18,7 +18,7 @@ import { ProfileStatusModule } from './profile-status';
     // ContactDetailsModule,
     // OccupationDetailsModule,
     PersonalDetailsModule,
-    ProfileStatusModule,
+    //ProfileStatusModule,
   ],
   exports: [
     // AccountDetailsModule,
@@ -26,7 +26,7 @@ import { ProfileStatusModule } from './profile-status';
     // ContactDetailsModule,
     // OccupationDetailsModule,
     PersonalDetailsModule,
-    ProfileStatusModule,
+    //ProfileStatusModule,
   ],
   // declarations: [InterestsUiPageComponent],
 })
