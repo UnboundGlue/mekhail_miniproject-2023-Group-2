@@ -27,9 +27,9 @@ export class AuthApi {
   }
 
   async register(email: string,name : string,age : string, password: string) {
+    return await createUserWithEmailAndPassword(this.auth, email, password);
 
     try {
-        return await createUserWithEmailAndPassword(this.auth, email, password);
       // const id = userCredential.user.uid;
     }
     catch(error)  { // invalid password
