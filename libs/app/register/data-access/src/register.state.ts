@@ -48,7 +48,7 @@ export class RegisterState {
       if (email && name && age && password) {
         return ctx.dispatch(new AuthRegister(email,name,age, password));
       }
-      return ctx.dispatch(new SetError('Email or password not set'));
+      return ctx.dispatch(new SetError('Email or password or age or username'));
     } catch (error) {
       return ctx.dispatch(new SetError((error as Error).message));
     }

@@ -9,6 +9,9 @@ import {
   updatePassword,
   sendPasswordResetEmail
 } from '@angular/fire/auth';
+import {
+  IRegister,IRegisterAuthRequest,IRegisterAuthResponse
+} from '@mp/api/auth/util';
 import { signOut } from '@firebase/auth';
 
 @Injectable()
@@ -24,9 +27,19 @@ export class AuthApi {
   }
 
   async register(email: string,name : string,age : string, password: string) {
-    
-    return await createUserWithEmailAndPassword(this.auth, email, password);
+
+    try {
+        return await createUserWithEmailAndPassword(this.auth, email, password);
+      // const id = userCredential.user.uid;
+    }
+    catch(error)  { // invalid password
+      console.error(error);
+      console.log("meep")
+    };
+
   }
+
+
 
   async resetPassword(email: string, password: string, newPassword : string) {
 
