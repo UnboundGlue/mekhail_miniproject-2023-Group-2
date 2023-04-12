@@ -13,7 +13,7 @@ import {
     OccupationDetailsUpdatedHandler,
     PersonalDetailsUpdatedHandler,
     ProfileCreatedHandler,
-    ProfileStatusUpdatedHandler
+    ProfileDetailsUpdatedHandler
 } from './events';
 import { ProfilesSagas } from './profiles.sagas';
 import { ProfilesService } from './profiles.service';
@@ -29,7 +29,7 @@ export const EventHandlers = [
   PersonalDetailsUpdatedHandler,
   OccupationDetailsUpdatedHandler,
   AccountDetailsUpdatedHandler,
-  ProfileStatusUpdatedHandler,
+  ProfileDetailsUpdatedHandler,
 ];
 
 @Module({
