@@ -1,4 +1,4 @@
 export interface IContactDetails {
-  email?: string
+  email?: string | null | undefined;
   Cell?: string | null | undefined;
 }

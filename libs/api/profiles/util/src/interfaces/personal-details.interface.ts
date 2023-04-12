@@ -1,4 +1,4 @@
 export interface IPersonalDetails {
-  Firstname?: string;
+  Firstname?: string | null | undefined;
   Lastname?: string | null| undefined;
 }
