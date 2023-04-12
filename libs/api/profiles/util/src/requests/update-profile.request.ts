@@ -1,5 +1,5 @@
 import { IProfile } from '../interfaces';
 
-export interface IUpdateProfileStatusResponse {
+export interface IUpdateProfileRequest {
   profile: IProfile;
 }

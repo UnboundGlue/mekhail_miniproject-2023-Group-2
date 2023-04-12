@@ -8,7 +8,7 @@ export interface IProfile {
   TimeRemaining?: number | null | undefined; 
   RecentlyActive?: boolean | null | undefined;
   Gender?: Gender | null | undefined;
-  Age?: AgeGroup | null | undefined;
+  Age?: string | null | undefined;
   Hobby?: string[] | null | undefined;
   Major? : string | null | undefined;
   Name?: IPersonalDetails | null | undefined;

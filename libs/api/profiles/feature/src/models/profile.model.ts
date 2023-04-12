@@ -19,7 +19,7 @@ export class Profile extends AggregateRoot implements IProfile {
     public TimeRemaining?: number | null | undefined,
     public RecentlyActive?: boolean | null | undefined,
     public Gender?: Gender | null | undefined,
-    public Age?: AgeGroup | null | undefined,
+    public Age?: string | null | undefined,
     public Hobby?: string[] | null | undefined,
     public Major?: string | null | undefined,
     public Name?: IPersonalDetails | null | undefined,

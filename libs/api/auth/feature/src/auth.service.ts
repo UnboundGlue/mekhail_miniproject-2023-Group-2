@@ -1,4 +1,5 @@
 import { CreateAuthCommand, ICreateAuthRequest } from '@mp/api/auth/util';
+// import { IUpdateProfileRequest, IUpdateProfileResponse } from '@mp/api/profiles/util';
 import { Injectable } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { UserRecord } from 'firebase-admin/auth';
@@ -11,4 +12,13 @@ export class AuthService {
     const request: ICreateAuthRequest = { userRecord: user };
     return this.commandBus.execute(new CreateAuthCommand(request));
   }
+
+  // async updateProfile(
+  //   request: IUpdateProfileRequest
+  // ): Promise<IUpdateProfileResponse> {
+  //   return await this.commandBus.execute<
+  //     UpdateAccountDetailsCommand,
+  //     IUpdateProfileResponse
+  //   >(new UpdateAccountDetailsCommand(request));
+  // }
 }

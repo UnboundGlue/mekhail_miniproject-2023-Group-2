@@ -9,14 +9,18 @@ import {
   updatePassword,
   sendPasswordResetEmail
 } from '@angular/fire/auth';
-// import {
-//   IRegister,IRegisterAuthRequest,IRegisterAuthResponse
-// } from '@mp/api/auth/util';
+
+import { Functions, httpsCallable } from '@angular/fire/functions';
+
 import { signOut } from '@firebase/auth';
+import { IUpdateProfileRequest, IUpdateProfileResponse,IProfile } from '@mp/api/profiles/util';
 
 @Injectable()
 export class AuthApi {
-  constructor(private readonly auth: Auth) {}
+  constructor(
+    private readonly auth: Auth,
+    private readonly functions: Functions
+    ) {}
 
   auth$() {
     return authState(this.auth);
@@ -26,18 +30,57 @@ export class AuthApi {
     return await signInWithEmailAndPassword(this.auth, email, password);
   }
 
-  async register(email: string,name : string,age : string, password: string) {
-    return await createUserWithEmailAndPassword(this.auth, email, password);
+  async updateProfileDetails(request: IUpdateProfileRequest) {
+    return await httpsCallable<
+      IUpdateProfileRequest,
+      IUpdateProfileResponse
+    >(
+      this.functions,   // auth.functions.ts in api/core/feature
+      'updateProfile'
+    )(request);
+  }
+
+  async register(gender : string,age : string,firstname : string, lastname : string,email: string, password: string) {
+    
 
     try {
-      // const id = userCredential.user.uid;
+      const userCredential =  await createUserWithEmailAndPassword(this.auth, email, password);
+
+      const id = userCredential.user.uid;
+
+      const profile: IProfile = {
+        UID: id, 
+        TimeRemaining: null,
+        RecentlyActive: null,
+        Gender: null,
+        Age: age,
+        Hobby: null,
+        Major: null,
+        Name: {
+          Firstname : firstname,
+          Lastname : lastname
+        },
+        ContactDetails: {
+          Email : email,
+          Cell : null
+        },
+        Created: null,
+      };
+
+       this.updateProfileDetails( {profile});
+      return userCredential;
+
     }
     catch(error)  { // invalid password
       console.error(error);
       console.log("meep")
+      return null;
     };
 
+
   }
+
+  
 
 
 
