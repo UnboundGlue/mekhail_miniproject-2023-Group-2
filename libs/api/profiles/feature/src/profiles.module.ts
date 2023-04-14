@@ -17,10 +17,12 @@ import {
 } from './events';
 import { ProfilesSagas } from './profiles.sagas';
 import { ProfilesService } from './profiles.service';
+import { UpdateDetailsHandler } from './commands/update-details.handler';
 export const CommandHandlers = [
   CreateProfileHandler,
   UpdateContactDetailsHandler,
   UpdatePersonalDetailsHandler,
+  UpdateDetailsHandler,
 ];
 export const EventHandlers = [
   ProfileCreatedHandler,
@@ -30,6 +32,7 @@ export const EventHandlers = [
   OccupationDetailsUpdatedHandler,
   AccountDetailsUpdatedHandler,
   ProfileDetailsUpdatedHandler,
+  UpdateDetailsHandler,
 ];
 
 @Module({

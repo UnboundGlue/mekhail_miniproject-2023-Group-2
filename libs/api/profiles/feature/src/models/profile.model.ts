@@ -18,7 +18,7 @@ export class Profile extends AggregateRoot implements IProfile {
     public UID: string,
     public TimeRemaining?: number | null | undefined,
     public RecentlyActive?: boolean | null | undefined,
-    public Gender?: Gender | null | undefined,
+    public Gender?: string | null | undefined,
     public Age?: string | null | undefined,
     public Hobby?: string[] | null | undefined,
     public Major?: string | null | undefined,
@@ -56,6 +56,7 @@ export class Profile extends AggregateRoot implements IProfile {
     this.Gender = profile.Gender;
     this.Age = profile.Age;
     this.Hobby = profile.Hobby;
+    this.Name = profile.Name;
     this.Major = profile.Major;
     this.ContactDetails = profile.ContactDetails;
     this.apply(new ProfileDetailsUpdatedEvent(this.toJSON())); 
