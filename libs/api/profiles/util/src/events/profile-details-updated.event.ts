@@ -1,5 +1,5 @@
 import { IProfile } from '../interfaces';
 
-export class ProfileStatusUpdatedEvent {
+export class ProfileDetailsUpdatedEvent { // refer to api/feature/src/events/handler
   constructor(public readonly profile: IProfile) {}
 }

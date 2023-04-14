@@ -21,19 +21,24 @@ export class ProfilePage {
 
   changeMade = false;
 
+
   remainingAboutMeChars = 50;
   remainingMajorChars = 50;
 
   onAboutMeChange(event:any) {
     const inputLength = event.target.value.length;
     this.remainingAboutMeChars = 50 - inputLength;
+
     this.changeMade = true;
+
   }
 
   onMajorChange(event:any) {
     const inputLength = event.target.value.length;
     this.remainingMajorChars = 50 - inputLength;
+
     this.changeMade = true;
+
   }
 
   //IMAGES MODAL
@@ -56,6 +61,7 @@ export class ProfilePage {
       this.message = `Hello, ${ev.detail.data}!`;
     }
   }
+
 
   onFileSelected(event: any) {
     if (event.target.files && event.target.files[0]) {
@@ -95,4 +101,5 @@ export class ProfilePage {
   logout(){
     alert("logout");
   }
+
 }

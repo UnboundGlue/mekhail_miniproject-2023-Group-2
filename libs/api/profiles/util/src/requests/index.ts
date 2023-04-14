@@ -7,3 +7,4 @@ export * from './update-personal-details.request';
 export * from './update-profile-status.request';
 export * from './get-user-profile.request';
 export * from './'
+

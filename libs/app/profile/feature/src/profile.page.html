@@ -3,14 +3,16 @@
     <ion-title class="ion-align-items-center">
       Profile
       <!-- <ng-container *ngIf="(profile$ | async) as profile;">
+
         <ion-icon
-          *ngIf="profile.status == 'Incomplete'"
+           *ngIf="profile.status == 'Incomplete'"
           color="danger"
           name="alert-circle-outline"></ion-icon>
         <ion-icon
           *ngIf="profile.status == 'Complete'"
           color="success"
           name="checkmark-circle-outline"></ion-icon>
+
       </ng-container> -->
     </ion-title>
   </ion-toolbar>
@@ -21,6 +23,7 @@
       <ion-title size="large" class="ion-align-items-center">
         Profile
         <!-- <ng-container *ngIf="(profile$ | async) as profile;">
+
           <ion-icon
             *ngIf="profile.status == 'Incomplete'"
             color="danger"
@@ -29,7 +32,9 @@
             *ngIf="profile.status == 'Complete'"
             color="success"
             name="checkmark-circle-outline"></ion-icon>
+
         </ng-container> -->
+
       </ion-title>
     </ion-toolbar>
   </ion-header>
@@ -60,6 +65,7 @@
           </ion-buttons>
         </div>
         <ion-badge>25%</ion-badge>
+
         <h2>Time Remaining</h2>
         <h1 class="time-remaining">$1200</h1>
       </div>
@@ -178,9 +184,11 @@
           <ion-label class="item-label">Phone number</ion-label>
           <ion-input placeholder="0123456789" maxlength="10" [(ngModel)]="phoneText" type="tel" class="margin-bottom-half"></ion-input>
 
+
           <ion-button class="verifyButton" (click)="saveChanges()" [strong]="true" expand="block" shape="round">Save Changes</ion-button>
 
           <ion-button class="verifyButton" (click)="logout()" [strong]="true" expand="block" shape="round">Logout</ion-button>
+
         </div>
       </div>
       
@@ -188,7 +196,9 @@
   </ng-container>
 
 
+
   <input type="file" (change)="onFileSelected($event)" #fileInput style="display: none" accept="image/*">
+
 
   <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)" mode="ios">
     <ng-template>
@@ -239,14 +249,18 @@
             </ion-col>
             <ion-col class="empty-photo">
               <ion-buttons class="plus-image-btns">  
+
                 <ion-button class="plus-image-btn" id="open-modal" expand="block" (click)="fileInput.click()">
+
                   <ion-icon name="add-outline" size="large" class="add-img" slot="icon-only"></ion-icon>
                 </ion-button>
               </ion-buttons>
             </ion-col>
             <ion-col class="empty-photo">
               <ion-buttons class="plus-image-btns">  
+
                 <ion-button class="plus-image-btn" id="open-modal" expand="block" (click)="fileInput.click()">
+
                   <ion-icon name="add-outline" size="large" class="add-img" slot="icon-only"></ion-icon>
                 </ion-button>
               </ion-buttons>

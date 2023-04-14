@@ -31,7 +31,10 @@ export class CreateProfileHandler
       Age : null,
       Hobby : null,
       Major : null,
-      Name : null,   //name consists of a struct, so will have to hanndle later
+      Name : {
+        Firstname:null,
+        Lastname:null
+      },   //name consists of a struct, so will have to hanndle later
        ContactDetails : {
         Email : email,
         Cell : cellphone

@@ -49,8 +49,8 @@ export class ForgotPageComponent {
 
   sendEmail() {
     if (this.forgotForm.valid) {
-      //this.store.dispatch(new Forgot());
-      this.router.navigate(['/login']);
+      this.store.dispatch(new Forgot());
+      //this.router.navigate(['/login']);
 
     }
   }
