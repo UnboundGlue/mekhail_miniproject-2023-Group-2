@@ -52,7 +52,7 @@ export class AuthApi {
         UID: id, 
         TimeRemaining: null,
         RecentlyActive: null,
-        Gender: null,
+        Gender: gender,
         Age: age,
         Hobby: null,
         Major: null,
