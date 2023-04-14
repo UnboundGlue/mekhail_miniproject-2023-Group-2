@@ -24,6 +24,7 @@ export class ProfilesApi {
   ) {}
 
   profile$(id: string) {
+    console.log
     const docRef = doc(
       this.firestore,
       `profiles/${id}`
