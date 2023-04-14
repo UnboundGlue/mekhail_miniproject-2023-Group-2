@@ -59,7 +59,7 @@
             </ion-button>
           </ion-buttons>
         </div>
-        <ion-badge>78%</ion-badge>
+        <ion-badge>25%</ion-badge>
         <h2>Time Remaining</h2>
         <h1 class="time-remaining">$1200</h1>
       </div>
@@ -178,6 +178,9 @@
           <ion-label class="item-label">Phone number</ion-label>
           <ion-input placeholder="0123456789" maxlength="10" [(ngModel)]="phoneText" type="tel" class="margin-bottom-half"></ion-input>
 
+          <ion-button class="verifyButton" (click)="saveChanges()" [strong]="true" expand="block" shape="round">Save Changes</ion-button>
+
+          <ion-button class="verifyButton" (click)="logout()" [strong]="true" expand="block" shape="round">Logout</ion-button>
         </div>
       </div>
       

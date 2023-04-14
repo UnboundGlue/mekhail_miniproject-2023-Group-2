@@ -18,7 +18,8 @@ export class ProfilePage {
   aboutMeText!: string;
   majorText!: string;
   phoneText!: string;
-  emailText!: string;
+
+  changeMade = false;
 
   remainingAboutMeChars = 50;
   remainingMajorChars = 50;
@@ -26,11 +27,13 @@ export class ProfilePage {
   onAboutMeChange(event:any) {
     const inputLength = event.target.value.length;
     this.remainingAboutMeChars = 50 - inputLength;
+    this.changeMade = true;
   }
 
   onMajorChange(event:any) {
     const inputLength = event.target.value.length;
     this.remainingMajorChars = 50 - inputLength;
+    this.changeMade = true;
   }
 
   //IMAGES MODAL
@@ -79,4 +82,17 @@ export class ProfilePage {
   showIceCreamTick = false;
   showPetsTick = false;
   showSpaceTick = false;
+
+  //Save changes
+
+  saveChanges(){
+    if(this.changeMade){
+      alert("Changes to make: " + "About me: " + this.aboutMeText + "\n" + "Major: " + this.majorText + "\n" + "Phone: " + this.phoneText);
+    }
+  }
+
+  //Logout
+  logout(){
+    alert("logout");
+  }
 }
