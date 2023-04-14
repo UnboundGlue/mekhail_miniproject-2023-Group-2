@@ -49,6 +49,18 @@ export class Profile extends AggregateRoot implements IProfile {
     this.apply(new ProfileCreatedEvent(this.toJSON()));
   }
 
+
+  // updateAddressDetails(addressDetails: IAddressDetails) {
+  //   if (!this.addressDetails) this.addressDetails = {};
+  //   this.addressDetails.residentialArea = addressDetails.residentialArea
+  //     ? addressDetails.residentialArea
+  //     : this.addressDetails.residentialArea;
+  //   this.addressDetails.workArea = addressDetails.workArea
+  //     ? addressDetails.workArea
+  //     : this.addressDetails.workArea;
+  //   this.apply(new AddressDetailsUpdatedEvent(this.toJSON()));
+  // }
+  
   updateDetails(profile : IProfile) {
     this.UID = profile.UID;
     this.TimeRemaining = profile.TimeRemaining;
