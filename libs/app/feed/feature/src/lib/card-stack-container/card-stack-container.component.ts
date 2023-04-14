@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef} from '@angular/core';
 import {Observable} from "rxjs";
 import {IUser} from "@mp/api/users/util";
+import { Gesture, GestureConfig, createGesture } from "@ionic/angular";
 
 @Component({
   selector: 'mp-card-stack-container',
@@ -10,6 +11,25 @@ import {IUser} from "@mp/api/users/util";
 export class CardStackContainerComponent {
 
   userList$ = new Observable<IUser>;  //Convert to state selector next
+
+  element = document.querySelector('card');
+
+  gesture: Gesture | undefined;
+
+  constructor() {
+
+    if(this.element){
+      this.gesture = createGesture({
+        el: this.element,
+        gestureName: 'match-swipe',
+        onStart: () => {},
+        onMove: (ev) => {},
+        onEnd: (ev) => {},
+      })
+    }
+
+    this.gesture?.enable();
+  }
 
 
 
