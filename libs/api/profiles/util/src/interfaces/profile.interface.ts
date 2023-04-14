@@ -2,6 +2,7 @@ import { Timestamp } from 'firebase-admin/firestore';
 import { IContactDetails } from './contact-details.interface';
 import { IPersonalDetails } from './personal-details.interface';
 import { AgeGroup, Gender } from '../enums';
+import { IMatchDetails } from './match-details.interface';
 
 export interface IProfile {
   UID: string;
@@ -13,5 +14,7 @@ export interface IProfile {
   Major? : string | null | undefined;
   Name?: IPersonalDetails | null | undefined;
   ContactDetails?: IContactDetails | null | undefined;
+  Matches?: IMatchDetails | null |undefined;
   Created?: Timestamp | null | undefined;
+  
 }

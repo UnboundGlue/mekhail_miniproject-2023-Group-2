@@ -1,10 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { IProfile } from '@mp/api/profiles/util';
 import { ProfileState } from '@mp/app/profile/data-access';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActionsExecuting, actionsExecuting } from '@ngxs-labs/actions-executing';
+import { SaveProfileChanges } from '../../util/src/profile.actions';
 
 @Component({
   selector: 'ms-profile-page',
@@ -13,6 +16,13 @@ import { OverlayEventDetail } from '@ionic/core/components';
 })
 export class ProfilePage {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
+  // @Select(actionsExecuting([SaveProfileChanges])) profile$!: Observable<ActionsExecuting>;
+  // profileChangesForm = this.fb.group({
+  //   aboutMe: [ '', [ Validators.maxLength(50)],],
+  //   major: [ '', [ Validators.maxLength(64)],],
+  //   phone: [ '', [ Validators.minLength(10), Validators.maxLength(10)],],
+  //   //Send hobbies aswell, you hard-working developer. We love you Stacy and Arne. Thanks for reading this
+  // });
 
   //TEXT COUNTERS FOR INPUTS
   aboutMeText!: string;
@@ -40,6 +50,23 @@ export class ProfilePage {
     this.changeMade = true;
 
   }
+
+  get aboutMe() {
+    return this.aboutMeText;
+  }
+
+  get major(){
+    return this.majorText;
+  }
+
+  get phone(){
+    return this.phoneText;
+  }
+
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly store: Store
+  ) {}
 
   //IMAGES MODAL
   @ViewChild(IonModal) modal!: IonModal;
@@ -94,6 +121,9 @@ export class ProfilePage {
   saveChanges(){
     if(this.changeMade){
       alert("Changes to make: " + "About me: " + this.aboutMeText + "\n" + "Major: " + this.majorText + "\n" + "Phone: " + this.phoneText);
+      // if (this.profileChangesForm.valid) {
+      //   this.store.dispatch(new SaveProfileChanges());
+      // }
     }
   }
 
