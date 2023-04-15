@@ -31,7 +31,10 @@ export class ProfilePage {
   aboutMeText!: string;
   majorText!: string;
   phoneText!: string;
+  hobbiesText!: string[];
 
+  profileCompleteText = 0;
+  
   changeMade = false;
 
 
@@ -41,17 +44,18 @@ export class ProfilePage {
   onAboutMeChange(event:any) {
     const inputLength = event.target.value.length;
     this.remainingAboutMeChars = 300 - inputLength;
-
     this.changeMade = true;
-
   }
 
   onMajorChange(event:any) {
     const inputLength = event.target.value.length;
     this.remainingMajorChars = 50 - inputLength;
-
     this.changeMade = true;
+  }
 
+  onPhoneChange(event: any) {
+    // check if key entered was a digit
+    this.changeMade = true;
   }
 
   get aboutMe() {
@@ -69,7 +73,81 @@ export class ProfilePage {
   constructor(
     private readonly fb: FormBuilder,
     private readonly store: Store
-  ) {}
+  ) {
+    let doOnceBio = true;
+    let doOnceMajor = true;
+    let doOnceCell = true;
+    let doOnceHobby = true;
+
+    this.profile$.forEach(value => {
+      if(value?.Bio){
+        if(doOnceBio){
+          this.profileCompleteText += 25;
+          doOnceBio = false;
+        }
+        this.aboutMeText = value.Bio;
+      }
+      if(value?.ContactDetails?.Cell){
+        if(doOnceCell){
+          this.profileCompleteText += 25;
+          doOnceCell = false;
+        }
+        this.phoneText = value.ContactDetails.Cell;
+      }
+      if(value?.Major){
+        if(doOnceMajor){
+          this.profileCompleteText += 25;
+          doOnceMajor = false;
+        }
+        this.majorText = value.Major;
+      }
+      if(value?.Hobby){
+        this.hobbiesText = value.Hobby;
+        if(this.hobbiesText.length != 0){
+          if(doOnceHobby){
+            this.profileCompleteText += 25;
+            doOnceHobby = false;
+          }
+          if (this.hobbiesText.includes("games"))
+            this.showGamesTick = true;
+          if (this.hobbiesText.includes("football"))
+            this.showFootballTick = true;
+          if (this.hobbiesText.includes("reading"))
+            this.showReadingTick = true;
+          if (this.hobbiesText.includes("music"))
+            this.showMusicTick = true;
+          if (this.hobbiesText.includes("writing"))
+            this.showWritingTick = true;
+          if (this.hobbiesText.includes("basketball"))
+            this.showBasketballTick = true;
+          if (this.hobbiesText.includes("gym"))
+            this.showGymTick = true;
+          if (this.hobbiesText.includes("art"))
+            this.showArtTick = true;
+          if (this.hobbiesText.includes("photography"))
+            this.showPhotographyTick = true;
+          if (this.hobbiesText.includes("travel"))
+            this.showTravelTick = true;
+          if (this.hobbiesText.includes("takeOut"))
+            this.showTakeOutTick = true;
+          if (this.hobbiesText.includes("wine"))
+            this.showWineTick = true;
+          if (this.hobbiesText.includes("fishing"))
+            this.showFishingTick = true;
+          if (this.hobbiesText.includes("iceCream"))
+            this.showIceCreamTick = true;
+          if (this.hobbiesText.includes("pets"))
+            this.showPetsTick = true;
+          if (this.hobbiesText.includes("space"))
+            this.showSpaceTick = true;
+        }else{
+          if(doOnceHobby){
+            doOnceHobby = false;
+          }
+        }
+      }
+    });
+  }
 
   //IMAGES MODAL
   @ViewChild(IonModal) modal!: IonModal;
@@ -93,6 +171,8 @@ export class ProfilePage {
   }
 
 
+  progress = 0;
+
   onFileSelected(event: any) {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
@@ -104,9 +184,15 @@ export class ProfilePage {
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on('state_changed',
         (snapshot) => {
-          // Observe state change events such as progress, pause, and resume
-          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes);
+          this.progress = progress;
+          if(this.progress == 1){
+            this.progress = 0.9;
+            setInterval(() => {
+              this.progress += 0.01;
+            }, 300);
+          }
+          
           console.log('Upload is ' + progress + '% done');
           switch (snapshot.state) {
             case 'paused':
@@ -150,18 +236,24 @@ export class ProfilePage {
   showPetsTick = false;
   showSpaceTick = false;
 
-
-
   //Save changes
   profileImage: string = "https://picsum.photos/200/400?random=13";
   currentCell!: string;
   async saveChanges() {
     if (this.changeMade) {
-      this.getEmailValue();
-      let aboutMeToSend = this.aboutMeText;
-      let majorToSend = this.majorText;
-      let phoneToSend = this.phoneText;
 
+      if((this.aboutMeText == "" || this.aboutMeText == undefined) && this.getAboutMeValue() != ""){
+        this.aboutMeText = this.getAboutMeValue();
+      }
+
+      if((this.phoneText == "" || this.phoneText == undefined) && this.getPhoneValue() != ""){
+        this.phoneText = this.getPhoneValue();
+      }
+
+      if((this.majorText == "" || this.majorText == undefined) && this.getMajorValue() != ""){
+        this.majorText = this.getMajorValue();
+      }
+      
 
       let hobbies: string[] = [];
       if (this.showGamesTick)
@@ -197,14 +289,25 @@ export class ProfilePage {
       if (this.showSpaceTick)
         hobbies.push("space");
 
-      this.store.dispatch(new SaveProfileChanges(aboutMeToSend, majorToSend, phoneToSend, hobbies));
+      this.store.dispatch(new SaveProfileChanges(this.aboutMeText, this.majorText, this.phoneText, hobbies));
 
     }
   }
 
-  @ViewChild('currentEmail') currentEmail?: ElementRef;
-  getEmailValue() {
-    alert(this.currentEmail?.nativeElement.innerText);
+  @ViewChild('currentAboutMe') currentAboutMe?: ElementRef;
+  @ViewChild('currentPhone') currentPhone?: ElementRef;
+  @ViewChild('currentMajor') currentMajor?: ElementRef;
+
+  getAboutMeValue() {
+    return this.currentAboutMe?.nativeElement.innerText;
+  }
+
+  getPhoneValue() {
+    return this.currentPhone?.nativeElement.innerText;
+  }
+
+  getMajorValue() {
+    return this.currentMajor?.nativeElement.innerText;
   }
 
   //Logout
