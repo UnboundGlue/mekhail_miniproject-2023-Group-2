@@ -121,8 +121,7 @@ export class ProfilePage {
   currentCell!: string;
   async saveChanges() {
     if (this.changeMade) {
-      //alert("Changes to make: " + "About me: " + this.aboutMeText + "\n" + "Major: " + this.majorText + "\n" + "Phone: " + this.phoneText);
-      alert("save changes: "+this.currentCell);
+      
       let aboutMeToSend = this.aboutMeText;
       let majorToSend = this.majorText;
       let phoneToSend = this.phoneText;
