@@ -38,9 +38,8 @@
       </ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-input *ngIf="(profile$ | async) as profile;" [(ngModel)]="currentCell">
-    {{profile?.ContactDetails?.Email}}
-  </ion-input>
+  <div style="display: none;" *ngIf="(profile$ | async) as profile;" #currentEmail>{{profile?.ContactDetails?.Email}}</div>
+
   <ng-container>
     <ion-content>      
       <ion-segment value="matches">  
@@ -58,7 +57,7 @@
         <h1>{{profile?.Name?.Firstname}} {{profile?.Name?.Lastname}}, <span id="age">28</span></h1>
         <div class="progress-loader-wrapper">
           <div class="progress-loader">
-            <img src="https://picsum.photos/200/400?random=13" alt="img-10">
+            <img src={{profileImage}} alt="img-10">
           </div>
           <ion-buttons>  
             <ion-button class="add-images-btn" id="open-modal" expand="block">
@@ -187,7 +186,7 @@
           <ion-input placeholder="0123456789" maxlength="10" [(ngModel)]="phoneText" type="tel" class="margin-bottom-half"></ion-input>
 
 
-          <ion-button class="verifyButton" (click)="saveChanges()" [strong]="true" expand="block" shape="round">Save Changes</ion-button>
+          <ion-button class="verifyButton" (click)="saveChanges()" [strong]="true" expand="block" shape="round" [disabled]="!changeMade">Save Changes</ion-button>
 
           <ion-button class="verifyButton" (click)="logout()" [strong]="true" expand="block" shape="round">Logout</ion-button>
 
