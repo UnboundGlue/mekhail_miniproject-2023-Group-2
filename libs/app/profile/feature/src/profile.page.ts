@@ -212,7 +212,6 @@ export class ProfilePage {
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log('File available at', downloadURL);
-            this.profileImage=downloadURL;
             this.store.dispatch(new UpdateProfilePhoto(downloadURL));
           });
         }
@@ -239,7 +238,6 @@ export class ProfilePage {
   showSpaceTick = false;
 
   //Save changes
-  profileImage: string = "https://picsum.photos/200/400?random=13";
   currentCell!: string;
   async saveChanges() {
     if (this.changeMade) {
