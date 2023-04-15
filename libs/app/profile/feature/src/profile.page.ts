@@ -8,6 +8,7 @@ import { OverlayEventDetail } from '@ionic/core/components';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActionsExecuting, actionsExecuting } from '@ngxs-labs/actions-executing';
 import { SaveProfileChanges } from '../../util/src/profile.actions';
+import { Logout } from '@mp/app/auth/util';
 
 @Component({
   selector: 'ms-profile-page',
@@ -117,23 +118,58 @@ export class ProfilePage {
   showSpaceTick = false;
 
   //Save changes
+  currentCell!: string;
+  async saveChanges() {
+    if (this.changeMade) {
+      //alert("Changes to make: " + "About me: " + this.aboutMeText + "\n" + "Major: " + this.majorText + "\n" + "Phone: " + this.phoneText);
+      alert("save changes: "+this.currentCell);
+      let aboutMeToSend = this.aboutMeText;
+      let majorToSend = this.majorText;
+      let phoneToSend = this.phoneText;
 
-  async saveChanges(){
-    if(this.changeMade){
-      alert("Changes to make: " + "About me: " + this.aboutMeText + "\n" + "Major: " + this.majorText + "\n" + "Phone: " + this.phoneText);
-      let aboutMeToSend=this.aboutMeText;
-      let majorToSend=this.majorText;
-      let phoneToSend=this.phoneText;
 
-    
-      this.store.dispatch(new SaveProfileChanges(aboutMeToSend,majorToSend,phoneToSend));
-      
+      let hobbies: string[] = [];
+      if (this.showGamesTick)
+        hobbies.push("games");
+      if (this.showFootballTick)
+        hobbies.push("football");
+      if (this.showReadingTick)
+        hobbies.push("reading");
+      if (this.showMusicTick)
+        hobbies.push("music");
+      if (this.showWritingTick)
+        hobbies.push("writing");
+      if (this.showBasketballTick)
+        hobbies.push("basketball");
+      if (this.showGymTick)
+        hobbies.push("gym");
+      if (this.showArtTick)
+        hobbies.push("art");
+      if (this.showPhotographyTick)
+        hobbies.push("photography");
+      if (this.showTravelTick)
+        hobbies.push("travel");
+      if (this.showTakeOutTick)
+        hobbies.push("takeOut");
+      if (this.showWineTick)
+        hobbies.push("wine");
+      if (this.showFishingTick)
+        hobbies.push("fishing");
+      if (this.showIceCreamTick)
+        hobbies.push("iceCream");
+      if (this.showPetsTick)
+        hobbies.push("pets");
+      if (this.showSpaceTick)
+        hobbies.push("space");
+
+      this.store.dispatch(new SaveProfileChanges(aboutMeToSend, majorToSend, phoneToSend,hobbies));
+
     }
   }
 
   //Logout
-  logout(){
-    alert("logout");
+  logout() {
+    this.store.dispatch(new Logout());
   }
 
 }
