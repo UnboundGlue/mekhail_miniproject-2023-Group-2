@@ -24,6 +24,7 @@ import {
     UpdateContactDetails,
     //UpdateOccupationDetails,
     UpdatePersonalDetails,
+    UpdateProfilePhoto,
 } from '@mp/app/profile/util';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import produce from 'immer';
@@ -310,10 +311,10 @@ export class ProfileState {
   
 
   @Action(SaveProfileChanges)
-  async saveProfileChanges(ctx: StateContext<SaveProfileChangesModel>,{bio,major,cell,hobbies}: SaveProfileChanges) {
+  async saveProfileChanges(ctx: StateContext<ProfileStateModel>,{bio,major,cell,hobbies}: SaveProfileChanges) {
     try {
      
-      alert("this is in saveProfileChanges state "+bio+", "+major+", "+cell);
+      //alert("this is in saveProfileChanges state "+bio+", "+major+", "+cell);
       const state = ctx.getState();
       const UID= this.authApi.auth.currentUser?.uid;
       const Bio = bio
@@ -335,6 +336,31 @@ export class ProfileState {
       };
 
       const responseRef =await this.profileApi.saveProfileChanges(request);
+      const response = responseRef.data;
+      return ctx.dispatch(new SetProfile(response.profile));
+    } catch (error) {
+      return ctx.dispatch(new SetError((error as Error).message));
+    }
+  }
+
+  @Action(UpdateProfilePhoto)
+  async updateProfilePhoto(ctx: StateContext<ProfileStateModel>,{profilePhoto}: UpdateProfilePhoto) {
+    try {
+     
+      alert("this is in updata photo state "+profilePhoto);
+      const state = ctx.getState();
+      const UID= this.authApi.auth.currentUser?.uid;
+      const ProfilePhoto = profilePhoto;
+      //alert("UID at saveProfileChanges is "+UID);
+
+      const request: IUpdatePersonalDetailsRequest = {
+        profile: {
+          UID:UID,
+          ProfilePhoto:ProfilePhoto,
+        },
+      };
+
+      const responseRef =await this.profileApi.updateProfilePhoto(request);
       const response = responseRef.data;
       return ctx.dispatch(new SetProfile(response.profile));
     } catch (error) {

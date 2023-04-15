@@ -66,6 +66,17 @@ export class ProfilesApi {
 
   }
 
+  async updateProfilePhoto(request: IUpdatePersonalDetailsRequest){
+      alert("this is in update photo api")
+    const profile: IProfile = {
+      UID:request.profile.UID, 
+      ProfilePhoto: request.profile.ProfilePhoto,
+    };
+
+    return await this.updateProfileDetails( {profile});
+
+}
+
   async updateAccountDetails(request: IUpdateAccountDetailsRequest) {
     return await httpsCallable<
       IUpdateAccountDetailsRequest,

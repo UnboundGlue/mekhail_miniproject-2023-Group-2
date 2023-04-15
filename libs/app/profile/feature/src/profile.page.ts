@@ -7,7 +7,7 @@ import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActionsExecuting, actionsExecuting } from '@ngxs-labs/actions-executing';
-import { SaveProfileChanges } from '../../util/src/profile.actions';
+import { SaveProfileChanges, UpdateProfilePhoto } from '../../util/src/profile.actions';
 import { Logout } from '@mp/app/auth/util'
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 
@@ -213,6 +213,7 @@ export class ProfilePage {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log('File available at', downloadURL);
             this.profileImage=downloadURL;
+            this.store.dispatch(new UpdateProfilePhoto(downloadURL));
           });
         }
       );

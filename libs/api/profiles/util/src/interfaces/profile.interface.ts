@@ -5,8 +5,9 @@ import { AgeGroup, Gender } from '../enums';
 import { IMatchDetails } from './match-details.interface';
 
 export interface IProfile {
-  UID: string | null | undefined;
+  UID: string ;
   Bio?: string | null | undefined;
+  ProfilePhoto?: string | null | undefined;
   TimeRemaining?: number | null | undefined; 
   RecentlyActive?: boolean | null | undefined;
   Gender?: string | null | undefined;

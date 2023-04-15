@@ -43,5 +43,12 @@ export class SaveProfileChanges{
   ) {}
 }
 
+export class UpdateProfilePhoto{
+  static readonly type = '[Profile] UpdateProfilePhoto';
+  constructor(
+    public readonly profilePhoto: string,
+  ) {}
+}
+
 
 
