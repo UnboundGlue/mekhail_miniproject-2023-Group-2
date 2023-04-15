@@ -53,7 +53,7 @@ export class AuthApi {
       const profile: IProfile = {
         UID: id, 
         Bio: null,
-        TimeRemaining: null,
+        TimeRemaining: 250,
         RecentlyActive: null,
         Gender: gender,
         Age: age,
