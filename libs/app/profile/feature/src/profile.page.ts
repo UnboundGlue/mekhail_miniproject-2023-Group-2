@@ -37,7 +37,6 @@ export class ProfilePage {
   
   changeMade = false;
 
-
   remainingAboutMeChars = 300;
   remainingMajorChars = 50;
 
@@ -86,6 +85,7 @@ export class ProfilePage {
           doOnceBio = false;
         }
         this.aboutMeText = value.Bio;
+        this.remainingAboutMeChars = 300 - this.aboutMeText.length;
       }
       if(value?.ContactDetails?.Cell){
         if(doOnceCell){
@@ -100,6 +100,7 @@ export class ProfilePage {
           doOnceMajor = false;
         }
         this.majorText = value.Major;
+        this.remainingMajorChars = 50 - this.majorText.length;
       }
       if(value?.Hobby){
         this.hobbiesText = value.Hobby;
