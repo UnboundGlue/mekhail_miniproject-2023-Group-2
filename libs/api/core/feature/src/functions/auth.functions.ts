@@ -5,7 +5,6 @@ import * as functions from 'firebase-functions';
 import { CoreModule } from '../core.module';
 import {IUpdateProfileRequest,IUpdateProfileResponse} from '@mp/api/profiles/util'
 
-
 export const onAuthCreate = functions.auth
   .user()
   .onCreate(async (user: UserRecord) => {

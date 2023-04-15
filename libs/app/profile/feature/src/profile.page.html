@@ -51,7 +51,7 @@
       </ion-segment>  
 
       <div class="backdrop"></div>
-
+   
       <div class="profile-information-header">
         <h1>Darth Vadar, <span id="age">28</span></h1>
         <div class="progress-loader-wrapper">
@@ -74,7 +74,7 @@
         <div class="profile-content-inner-wrapper">
 
           <ion-label class="item-label">About Me</ion-label>
-          <ion-input placeholder="I love sushi!" maxlength="50" [(ngModel)]="aboutMeText" (ionChange)="onAboutMeChange($event)"></ion-input>
+          <ion-input placeholder="I love sushi!" maxlength="300" [(ngModel)]="aboutMeText" (ionChange)="onAboutMeChange($event)"></ion-input>
           <p>{{remainingAboutMeChars}}</p>
 
 

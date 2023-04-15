@@ -16,6 +16,7 @@ export class Profile extends AggregateRoot implements IProfile {
   constructor(
 
     public UID: string,
+    public Bio?: string | null | undefined,
     public TimeRemaining?: number | null | undefined,
     public RecentlyActive?: boolean | null | undefined,
     public Gender?: string | null | undefined,
@@ -24,7 +25,7 @@ export class Profile extends AggregateRoot implements IProfile {
     public Major?: string | null | undefined,
     public Name?: IPersonalDetails | null | undefined,
     public ContactDetails?: IContactDetails | null | undefined,
-    public Matches?: IMatchDetails | null | undefined,
+    public Matches?: IMatchDetails[] | null | undefined,
     public Created?: FirebaseFirestore.Timestamp | null | undefined
   ) {
     super();
@@ -33,6 +34,7 @@ export class Profile extends AggregateRoot implements IProfile {
   static fromData(profile: IProfile): Profile {
     const instance = new Profile(
       profile.UID,
+      profile.Bio,
       profile.TimeRemaining,
       profile.RecentlyActive,
       profile.Gender,
@@ -65,6 +67,7 @@ export class Profile extends AggregateRoot implements IProfile {
   
   updateDetails(profile : IProfile) {
     this.UID = profile.UID;
+    this.Bio=profile.Bio;
     this.TimeRemaining = profile.TimeRemaining;
     this.RecentlyActive = profile.RecentlyActive;
     this.Gender = profile.Gender;
@@ -94,12 +97,14 @@ export class Profile extends AggregateRoot implements IProfile {
   toJSON(): IProfile {
     return {
       UID: this.UID,
+      Bio: this.Bio,
       TimeRemaining: this.TimeRemaining,
       RecentlyActive: this.RecentlyActive,
       Gender: this.Gender,
       Age: this.Age,
       Hobby: this.Hobby,
       Name: this.Name,
+      Major:this.Major,
       ContactDetails : this.ContactDetails,
       Matches: this.Matches,
       Created: this.Created,

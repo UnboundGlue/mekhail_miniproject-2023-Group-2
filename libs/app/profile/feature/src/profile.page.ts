@@ -16,13 +16,13 @@ import { SaveProfileChanges } from '../../util/src/profile.actions';
 })
 export class ProfilePage {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
-  // @Select(actionsExecuting([SaveProfileChanges])) profile$!: Observable<ActionsExecuting>;
-  // profileChangesForm = this.fb.group({
-  //   aboutMe: [ '', [ Validators.maxLength(50)],],
-  //   major: [ '', [ Validators.maxLength(64)],],
-  //   phone: [ '', [ Validators.minLength(10), Validators.maxLength(10)],],
-  //   //Send hobbies aswell, you hard-working developer. We love you Stacy and Arne. Thanks for reading this
-  // });
+  @Select(actionsExecuting([SaveProfileChanges])) busy$!: Observable<ActionsExecuting>;
+  profileChangesForm = this.fb.group({
+    aboutMe: [ '', [ Validators.maxLength(300)],],
+    major: [ '', [ Validators.maxLength(50)],],
+    phone: [ '', [ Validators.minLength(10), Validators.maxLength(10)],],
+    //Send hobbies aswell, you hard-working developer. We love you Stacy and Arne. Thanks for reading this
+  });
 
   //TEXT COUNTERS FOR INPUTS
   aboutMeText!: string;
@@ -32,12 +32,12 @@ export class ProfilePage {
   changeMade = false;
 
 
-  remainingAboutMeChars = 50;
+  remainingAboutMeChars = 300;
   remainingMajorChars = 50;
 
   onAboutMeChange(event:any) {
     const inputLength = event.target.value.length;
-    this.remainingAboutMeChars = 50 - inputLength;
+    this.remainingAboutMeChars = 300 - inputLength;
 
     this.changeMade = true;
 
@@ -118,12 +118,16 @@ export class ProfilePage {
 
   //Save changes
 
-  saveChanges(){
+  async saveChanges(){
     if(this.changeMade){
       alert("Changes to make: " + "About me: " + this.aboutMeText + "\n" + "Major: " + this.majorText + "\n" + "Phone: " + this.phoneText);
-      // if (this.profileChangesForm.valid) {
-      //   this.store.dispatch(new SaveProfileChanges());
-      // }
+      let aboutMeToSend=this.aboutMeText;
+      let majorToSend=this.majorText;
+      let phoneToSend=this.phoneText;
+
+    
+      this.store.dispatch(new SaveProfileChanges(aboutMeToSend,majorToSend,phoneToSend));
+      
     }
   }
 

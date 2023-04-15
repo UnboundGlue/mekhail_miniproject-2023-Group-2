@@ -16,18 +16,20 @@ import { Logout as AuthLogout } from '@mp/app/auth/util';
 import { SetError } from '@mp/app/errors/util';
 import {
     Logout,
+    SaveProfileChanges,
     SetProfile,
     SubscribeToProfile,
     //UpdateAccountDetails,
     //UpdateAddressDetails,
     UpdateContactDetails,
     //UpdateOccupationDetails,
-    UpdatePersonalDetails
+    UpdatePersonalDetails,
 } from '@mp/app/profile/util';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import produce from 'immer';
 import { tap } from 'rxjs';
 import { ProfilesApi } from './profiles.api';
+import { AuthApi } from 'libs/app/auth/data-access/src/auth.api';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ProfileStateModel {
@@ -80,6 +82,17 @@ export interface ProfileStateModel {
     errors: object;
   };
 }
+
+export interface SaveProfileChangesModel{
+ changes: SaveProfileChanges | null;
+}
+
+@State<SaveProfileChangesModel>({
+  name: 'profileChanges',
+  defaults:{
+    changes: null
+  }
+})
 
 @State<ProfileStateModel>({
   name: 'profile',
@@ -138,6 +151,7 @@ export interface ProfileStateModel {
 export class ProfileState {
   constructor(
     private readonly profileApi: ProfilesApi,
+    private readonly authApi: AuthApi,
     private readonly store: Store
   ) {}
 
@@ -293,35 +307,40 @@ export class ProfileState {
     }
   }
 
-  //@Action(UpdateOccupationDetails)
-  //async updateOccupationDetails(ctx: StateContext<ProfileStateModel>) {
-  //  try {
-  //    const state = ctx.getState();
-  //    const userId = state.profile?.UID;
-  //    const householdIncome = state.occupationDetailsForm.model.householdIncome;
-  //    const occupation = state.occupationDetailsForm.model.occupation;
+  
 
-  //    if (!userId || !householdIncome || !occupation)
-  //      return ctx.dispatch(
-  //        new SetError('UserId or householdIncome or occupation not set')
-  //      );
+  @Action(SaveProfileChanges)
+  async saveProfileChanges(ctx: StateContext<SaveProfileChangesModel>,{bio,major,cell}: SaveProfileChanges) {
+    try {
+     
+      alert("this is in saveProfileChanges state "+bio+", "+major+", "+cell);
+      const state = ctx.getState();
+      const UID= this.authApi.auth.currentUser?.uid;
+      const Bio = bio
+      const Major = major;
+      const Cell =cell;
+      //alert("UID at saveProfileChanges is "+UID);
 
-  //    const request: IUpdateOccupationDetailsRequest = {
-  //      profile: {
-  //        UID,
-  //        occupationDetails: {
-  //          householdIncome,
-  //          occupation,
-  //        },
-  //      },
-  //    };
-  //    const responseRef = await this.profileApi.updateOccupationDetails(
-  //      request
-  //    );
-  //    const response = responseRef.data;
-  //    return ctx.dispatch(new SetProfile(response.profile));
-  //  } catch (error) {
-  //    return ctx.dispatch(new SetError((error as Error).message));
-  //  }
-  //}
+      const request: IUpdatePersonalDetailsRequest = {
+        profile: {
+          UID:UID,
+          Bio:Bio,
+          ContactDetails: {
+            Cell:Cell,
+          },
+          Major:Major
+        },
+      };
+
+      const responseRef =await this.profileApi.saveProfileChanges(request);
+      const response = responseRef.data;
+      return ctx.dispatch(new SetProfile(response.profile));
+    } catch (error) {
+      return ctx.dispatch(new SetError((error as Error).message));
+    }
+  }
+
+  
+
+ 
 }

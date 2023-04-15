@@ -13,7 +13,9 @@ import {
   IUpdateOccupationDetailsRequest,
   IUpdateOccupationDetailsResponse,
   IUpdatePersonalDetailsRequest,
-  IUpdatePersonalDetailsResponse
+  IUpdatePersonalDetailsResponse,
+  IUpdateProfileRequest,
+  IUpdateProfileResponse
 } from '@mp/api/profiles/util';
 
 @Injectable()
@@ -35,6 +37,34 @@ export class ProfilesApi {
       toFirestore: (it: IProfile) => it,
     });
     return docData(docRef, { idField: 'id' });
+  }
+
+  async updateProfileDetails(request: IUpdateProfileRequest) {
+    return await httpsCallable<
+      IUpdateProfileRequest,
+      IUpdateProfileResponse
+    >(
+      this.functions,   // auth.functions.ts in api/core/feature
+      'updateProfile'
+    )(request);
+  }
+
+
+  async saveProfileChanges(request: IUpdatePersonalDetailsRequest){
+      
+    alert(request.profile.Bio);
+      const profile: IProfile = {
+        UID:request.profile.UID, 
+        Bio: request.profile.Bio,
+        Hobby: null,
+        Major: request.profile.Major,
+        ContactDetails: {
+          Cell : request.profile.ContactDetails?.Cell
+        },
+      };
+
+      return await this.updateProfileDetails( {profile});
+
   }
 
   async updateAccountDetails(request: IUpdateAccountDetailsRequest) {

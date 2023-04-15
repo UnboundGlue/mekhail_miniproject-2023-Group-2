@@ -35,4 +35,12 @@ export class UpdatePersonalDetails {
 
 export class SaveProfileChanges{
   static readonly type = '[Profile] SaveProfileChanges';
+  constructor(
+    public readonly bio: string,
+    public readonly major: string,
+    public readonly cell: string,
+  ) {}
 }
+
+
+

@@ -6,6 +6,7 @@ import { IMatchDetails } from './match-details.interface';
 
 export interface IProfile {
   UID: string;
+  Bio?: string | null | undefined;
   TimeRemaining?: number | null | undefined; 
   RecentlyActive?: boolean | null | undefined;
   Gender?: string | null | undefined;
@@ -14,7 +15,7 @@ export interface IProfile {
   Major? : string | null | undefined;
   Name?: IPersonalDetails | null | undefined;
   ContactDetails?: IContactDetails | null | undefined;
-  Matches?: IMatchDetails | null |undefined;
+  Matches?: IMatchDetails[] | null |undefined;
   Created?: Timestamp | null | undefined;
   
 }
