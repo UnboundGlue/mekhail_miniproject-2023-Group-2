@@ -38,7 +38,9 @@
       </ion-title>
     </ion-toolbar>
   </ion-header>
-
+  <ion-input *ngIf="(profile$ | async) as profile;" [(ngModel)]="currentCell">
+    {{profile?.ContactDetails?.Email}}
+  </ion-input>
   <ng-container>
     <ion-content>      
       <ion-segment value="matches">  
@@ -52,8 +54,8 @@
 
       <div class="backdrop"></div>
    
-      <div class="profile-information-header">
-        <h1>Darth Vadar, <span id="age">28</span></h1>
+      <div class="profile-information-header" *ngIf="(profile$ | async) as profile;">
+        <h1>{{profile?.Name?.Firstname}} {{profile?.Name?.Lastname}}, <span id="age">28</span></h1>
         <div class="progress-loader-wrapper">
           <div class="progress-loader">
             <img src="https://picsum.photos/200/400?random=13" alt="img-10">

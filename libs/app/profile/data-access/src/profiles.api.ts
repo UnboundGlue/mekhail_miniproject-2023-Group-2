@@ -52,11 +52,10 @@ export class ProfilesApi {
 
   async saveProfileChanges(request: IUpdatePersonalDetailsRequest){
       
-    alert(request.profile.Bio);
       const profile: IProfile = {
         UID:request.profile.UID, 
         Bio: request.profile.Bio,
-        Hobby: null,
+        Hobby: request.profile.Hobby,
         Major: request.profile.Major,
         ContactDetails: {
           Cell : request.profile.ContactDetails?.Cell

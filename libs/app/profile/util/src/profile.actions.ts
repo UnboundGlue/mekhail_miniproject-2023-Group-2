@@ -39,6 +39,7 @@ export class SaveProfileChanges{
     public readonly bio: string,
     public readonly major: string,
     public readonly cell: string,
+    public readonly hobbies: string[],
   ) {}
 }
 

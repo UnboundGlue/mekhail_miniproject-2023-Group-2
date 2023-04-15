@@ -310,7 +310,7 @@ export class ProfileState {
   
 
   @Action(SaveProfileChanges)
-  async saveProfileChanges(ctx: StateContext<SaveProfileChangesModel>,{bio,major,cell}: SaveProfileChanges) {
+  async saveProfileChanges(ctx: StateContext<SaveProfileChangesModel>,{bio,major,cell,hobbies}: SaveProfileChanges) {
     try {
      
       alert("this is in saveProfileChanges state "+bio+", "+major+", "+cell);
@@ -319,6 +319,7 @@ export class ProfileState {
       const Bio = bio
       const Major = major;
       const Cell =cell;
+      const Hobbies=hobbies;
       //alert("UID at saveProfileChanges is "+UID);
 
       const request: IUpdatePersonalDetailsRequest = {
@@ -328,7 +329,8 @@ export class ProfileState {
           ContactDetails: {
             Cell:Cell,
           },
-          Major:Major
+          Major:Major,
+          Hobby:Hobbies
         },
       };
 
