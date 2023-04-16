@@ -109,7 +109,7 @@ export class MessagesPageComponent {
 
   openVerifyPage() {
     if(this.verifyPass == true){
-      this.navCtrl.navigateForward('home/chat/verify');
+      this.navCtrl.navigateForward('home/chat/verified');
       this.cancel();
     }else{
       this.showVerifyError = true;
