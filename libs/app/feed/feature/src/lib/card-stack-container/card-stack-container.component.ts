@@ -9,10 +9,10 @@ import {CardItemComponent} from "../card-item/card-item.component";
   styleUrls: ['./card-stack-container.component.scss'],
 })
 export class CardStackContainerComponent {
-
+ 
   userList$ = new Observable<IUser>;  //Convert to state selector next
 
   matchUsers(match: boolean){
-    console.log('Users Matched!')
+    console.log('Users Matched!:'+!match)
   }
 }
