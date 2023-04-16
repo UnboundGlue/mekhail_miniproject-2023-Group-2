@@ -279,9 +279,6 @@ export class ProfileState {
         profile: {
           userId,
           personalDetails: {
-            age,
-            gender,
-            ethnicity,
           },
         },
       };

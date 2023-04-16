@@ -1,6 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
+import { ProfileState } from '@mp/app/profile/data-access';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { IProfile } from '@mp/api/profiles/util';
 
 import { NavController } from '@ionic/angular';
 import { SentBubbleUiComponent } from '../sent-bubble-ui/sent-bubble-ui.component';
@@ -13,6 +17,8 @@ import { Time } from '@angular/common';
 })
 export class MessagesPageComponent {
 
+  @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
+
   public isSearchBarOpened = false;
 
   @ViewChild(IonModal) modal!: IonModal;
@@ -21,8 +27,8 @@ export class MessagesPageComponent {
   dateSelected!: string;
   timeSelected!: string;
   locationSelected!: string;
-  foodSelected!: "none";
-  dressSelected!: "none";
+  foodSelected = "none";
+  dressSelected = "none";
 
   datePass = false;
   timePass = false;
@@ -76,6 +82,7 @@ export class MessagesPageComponent {
     if(this.datePass && this.timePass && this.locationPass){
       this.verifyPass = true;
       this.showVerifyError = false;
+      alert("date selected: " + this.dateSelected + "\ntime selected: " + this.timeSelected + "\nlocation selected: " + this.locationSelected + "\nfood selected: " + this.foodSelected + "\ndress selected: " + this.dressSelected );
       this.modal.dismiss(this.locationSelected, 'confirm');
     }else{
       this.verifyPass = false;
@@ -92,6 +99,10 @@ export class MessagesPageComponent {
 
   //FOR SENDING MESSAGES:
   messageToSend!: string;
+
+  sendMessage(){
+    alert("Message to send is: " + this.messageToSend);
+  }
 
   //ROUTING TO VERIFICATION PAGE
   constructor(private navCtrl: NavController) {}
