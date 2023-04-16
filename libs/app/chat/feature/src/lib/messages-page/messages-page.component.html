@@ -7,7 +7,7 @@
       <ion-title class="ion-text-center">
         <div class="time-remaining-outer-wrapper">
           <div class="time-remaining-inner-wrapper"  *ngIf="(profile$ | async) as profile;">
-            {{profile?.created}} <!--REPLACE WITH TimeRemaining-->
+            {{profile?.TimeRemaining}} <!--REPLACE WITH TimeRemaining-->
           </div>
         </div>
       </ion-title>
@@ -86,7 +86,7 @@
             <mp-received-bubble-ui></mp-received-bubble-ui>
 
             <!-- FROM ME -->
-            <mp-sent-bubble-ui  *ngIf="(profile$ | async) as profile;" imgSrc="{{profile?.userId}}"></mp-sent-bubble-ui>
+            <mp-sent-bubble-ui  *ngIf="(profile$ | async) as profile;" imgSrc="{{profile?.UID}}"></mp-sent-bubble-ui>
 
             <!-- FROM THEM -->
             <mp-received-emoji-ui></mp-received-emoji-ui>
