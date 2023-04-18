@@ -21,6 +21,7 @@ import { VerifyPageComponent } from './verify-page/verify-page.component';
     RouterModule.forChild(appChatFeatureRoutes),
     IonicModule,
     FormsModule,
+    
   ],
   declarations: [
     ChatPageComponent,
