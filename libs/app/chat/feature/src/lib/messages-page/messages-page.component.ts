@@ -26,6 +26,10 @@ export class MessagesPageComponent {
 
   @ViewChild(IonModal) modal!: IonModal;
 
+
+    //ROUTING TO VERIFICATION PAGE
+    constructor(private navCtrl: NavController, private readonly store: Store) {}
+
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
   dateSelected!: string;
   timeSelected!: string;
@@ -116,8 +120,7 @@ export class MessagesPageComponent {
     alert("dispatch done");
   }
 
-  //ROUTING TO VERIFICATION PAGE
-  constructor(private navCtrl: NavController, private readonly store: Store) {}
+
 
   openVerifyPage() {
     if(this.verifyPass == true){
