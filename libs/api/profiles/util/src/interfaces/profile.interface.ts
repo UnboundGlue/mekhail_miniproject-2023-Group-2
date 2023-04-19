@@ -4,7 +4,8 @@ import { IPersonalDetails } from './personal-details.interface';
 import { IMatchDetails } from './match-details.interface';
 
 export interface IProfile {
-  UID: string | undefined;
+
+  UID: string | null | undefined;
   Bio?: string | null | undefined;
   ProfilePhoto?: string | null | undefined;
   TimeRemaining?: number | null | undefined; 
@@ -17,5 +18,4 @@ export interface IProfile {
   ContactDetails?: IContactDetails | null | undefined;
   Matches?: IMatchDetails[] | null |undefined;
   Created?: Timestamp | null | undefined;
-  
 }
