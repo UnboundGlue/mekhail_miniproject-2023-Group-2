@@ -54,6 +54,4 @@ pubsub-debug.log
 # Keys
 .keys/*.json
 
-# Env
-.env
-.env.prod
+
